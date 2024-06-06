@@ -1,0 +1,33 @@
+.button-64 {
+    -fx-alignment: center;
+    -fx-background-color: transparent; /* Set the button fill color to black */
+    -fx-font-family: "Phantomsans", sans-serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFFFFF; /* Set the text color to white */
+    -fx-padding: 10px 20px; /* Adjust padding as needed */
+    -fx-border-width: 2px; /* Set a base border width */
+    -fx-border-radius: 8px; /* Set the border radius */
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+    -fx-wrap-text: true;
+    /*-fx-border-color: linear-gradient(to right, #f729f8, #00DDEB);*/
+}
+
+/* Define the gradient border */
+.button-64 .border {
+    /*-fx-border-color:  linear-gradient(to right, #f729f8, #00DDEB); !* Define gradient colors *!*/
+}
+
+.button-64:hover {
+    /*-fx-border-color:  linear-gradient(to left, #f729f8, #00DDEB);       !* Change button fill color on hover *!*/
+}
+
+/* Apply gradient border only on hover */
+.button-64:hover .border {
+    /*-fx-border-color:  linear-gradient(to right, #f729f8, #00DDEB);!* Define gradient colors *!*/
+}
+
+/* Hide the default border on hover */
+.button-64:hover {
+    -fx-border-color:  linear-gradient(to left, #f729f8, #00DDEB);
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="0.0" prefWidth="1231.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.main.MainController">
+    <!--    <fx:include source="../dashboard/Dashboard.fxml" />-->
+    <!--    <fx:include source="../employees/Employees.fxml" />-->
+    <children>
+        <ImageView fitHeight="641.0" fitWidth="1239.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../Assets/Backgrounds/Dashboard.jpg" />
+            </image>
+        </ImageView>
+        <BorderPane layoutX="12.0" layoutY="11.0" prefHeight="619.0" prefWidth="1210.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="11.0">
+            <top>
+                <HBox alignment="TOP_RIGHT" prefHeight="75.0" prefWidth="1185.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label alignment="TOP_LEFT" contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="315.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="WELCOME ADMIN" textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="lblTime" prefHeight="36.0" prefWidth="667.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" />
+                        <Button fx:id="btLogout" alignment="TOP_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onAction="#BtLogout" prefHeight="54.0" prefWidth="154.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/LoginButtonStyle.css" text="Log out" />
+                    </children>
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets right="10.0" top="10.0" />
+                    </padding>
+                    <BorderPane.margin>
+                        <Insets right="25.0" top="10.0" />
+                    </BorderPane.margin>
+                </HBox>
+            </top>
+            <left>
+                <VBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="175.0" spacing="10.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox prefHeight="49.0" prefWidth="199.0">
+                            <children>
+                                <ImageView fitHeight="47.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../Assets/Icons/Dashboard.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="btDashboard" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeTab" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="Dashboard" />
+                            </children>
+                            <opaqueInsets>
+                                <Insets left="10.0" />
+                            </opaqueInsets>
+                        </HBox>
+                        <HBox prefHeight="49.0" prefWidth="199.0">
+                            <children>
+                                <ImageView fitHeight="47.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../Assets/Icons/Employee.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="btEmployee" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeTab" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="Employees" />
+                            </children>
+                            <opaqueInsets>
+                                <Insets left="10.0" />
+                            </opaqueInsets>
+                        </HBox>
+                        <HBox prefHeight="49.0" prefWidth="199.0">
+                            <children>
+                                <ImageView fitHeight="46.0" fitWidth="46.0">
+                                    <image>
+                                        <Image url="@../../Assets/Icons/Sample2.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="btSample" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeTab" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="Samples" />
+                            </children>
+                            <opaqueInsets>
+                                <Insets left="10.0" />
+                            </opaqueInsets>
+                        </HBox>
+                    </children>
+                    <opaqueInsets>
+                        <Insets left="10.0" top="10.0" />
+                    </opaqueInsets>
+                    <BorderPane.margin>
+                        <Insets left="20.0" top="10.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </left>
+            <center>
+                <AnchorPane fx:id="apMain" prefHeight="534.0" prefWidth="953.0" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

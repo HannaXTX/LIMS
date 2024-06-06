@@ -1,0 +1,12 @@
+/* TableViewStyle.css */
+.table-view-style {
+    -fx-background-color: #57058f; /* Set the background color for the entire TableView */
+    -fx-font-family: "Phantomsans", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 10px 20px; /* Adjust padding as needed */
+    -fx-border-width: 2px; /* Set a base border width */
+    -fx-border-radius: 8px; /* Set the border radius */
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+
+}
