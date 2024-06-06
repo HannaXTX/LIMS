@@ -1,5 +1,6 @@
 package entities;
 
+// test
 public class Certificate {
     private String code;
     private double totalPrice;
