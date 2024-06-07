@@ -11,7 +11,6 @@ CREATE TABLE Test (
 
 );
 
-## Adel
 
 #insert some tests
 
