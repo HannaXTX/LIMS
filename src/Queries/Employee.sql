@@ -12,7 +12,7 @@ CREATE TABLE Employees (
                            PRIMARY KEY (ID)
 );
 
- DROP TABLE Employees;
+
 
 SELECT  * FROM Employees;
 
