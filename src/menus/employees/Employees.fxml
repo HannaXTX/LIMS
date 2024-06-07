@@ -29,7 +29,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="tbEmployee" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                <TableView fx:id="tvEmployee" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="40.0" text="ID" />
                         <TableColumn fx:id="colName" prefWidth="200.0" text="NAME" />
@@ -56,7 +56,7 @@
                     <children>
                         <Button fx:id="btAdd" mnemonicParsing="false" onAction="#modifyTable" prefHeight="53.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Add" />
                         <Button fx:id="btUpdate" mnemonicParsing="false" onAction="#modifyTable" prefHeight="54.0" prefWidth="121.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Update" />
-                        <Button fx:id="BDeleteEmp" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
+                        <Button fx:id="BDeleteEmp" alignment="CENTER" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
                         <Button fx:id="BClearEmp" mnemonicParsing="false" prefHeight="59.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Clear" />
                     </children>
                     <padding>

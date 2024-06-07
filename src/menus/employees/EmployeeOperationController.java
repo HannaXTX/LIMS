@@ -114,14 +114,13 @@ public class EmployeeOperationController implements Initializable {
                 EmpController.getModifyStage().close();
                 saveEmployee();
             } else {
-           Queries.updateEmployeeInDB(emp.getId(),emp.getName(),
-                   emp.getSsn(), emp.getAddress(), emp.getDateOfBirth(),
-                   emp.getMajor(), emp.getPhoneNumber(), emp.getEmail());
-
-
+                updateEmployee();
+                System.out.println(emp.getId());
+                Queries.updateEmployeeInDB(emp.getId(), emp.getName(),
+                        emp.getSsn(), emp.getAddress(), emp.getDateOfBirth(),
+                        emp.getMajor(), emp.getPhoneNumber(), emp.getEmail());
 
                 EmpController.getModifyStage().close();
-                updateEmployee();
 
 
             }
@@ -129,6 +128,7 @@ public class EmployeeOperationController implements Initializable {
 
         } catch (Exception ex) {
             UtilFunctions.createAlert("ERROR", "ERROR", "EMPTY FIELDS", null).show();
+            ex.printStackTrace();
         }
     }
 

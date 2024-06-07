@@ -9,6 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Java_mySQL_Connecter" level="application" />
     <orderEntry type="library" name="FX" level="application" />
+
     <orderEntry type="library" name="lib" level="application" />
     <orderEntry type="library" name="mysql-connector-java-5.1.47" level="application" />
   </component>
