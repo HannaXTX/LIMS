@@ -3,22 +3,31 @@ package entities;
 public class Sample {
     private String code;
     private String name;
-    private String receiveDate;
-    private String productionDate;
-    private String expirationDate;
-    private String temperature;
-    private String storage;
+    private int Cid;
+    private String ProductionDate;
+    private String ExpirationDate;
+    private String Storage;
+    private String Temperature;
+    private String SampleType;
 
-    public Sample(String code, String name, String receiveDate, String productionDate, String expirationDate,
-                  String temperature, String storage) {
-        setCode(code);
-        setName(name);
-        setReceiveDate(receiveDate);
-        setProductionDate(productionDate);
-        setExpirationDate(expirationDate);
-        setTemperature(temperature);
-        setStorage(storage);
+    public Sample(String code,
+                  String name,
+                  int cid,
+                  String productionDate,
+                  String expirationDate,
+                  String storage,
+                  String temperature,
+                  String sampleType) {
 
+
+        this.code = code;
+        this.name = name;
+//        Cid = cid;
+        ProductionDate = productionDate;
+        ExpirationDate = expirationDate;
+        Storage = storage;
+        Temperature = temperature;
+        SampleType = sampleType;
     }
 
     public String getCode() {
@@ -37,43 +46,67 @@ public class Sample {
         this.name = name;
     }
 
-    public String getReceiveDate() {
-        return receiveDate;
-    }
+     public int getCid() {
+         return Cid;
+     }
 
-    public void setReceiveDate(String receiveDate) {
-        this.receiveDate = receiveDate;
-    }
+     public void setCid(int cid) {
+         Cid = cid;
+     }
 
     public String getProductionDate() {
-        return productionDate;
+        return ProductionDate;
     }
 
     public void setProductionDate(String productionDate) {
-        this.productionDate = productionDate;
+        ProductionDate = productionDate;
     }
 
     public String getExpirationDate() {
-        return expirationDate;
+        return ExpirationDate;
     }
 
     public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public String getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
+        ExpirationDate = expirationDate;
     }
 
     public String getStorage() {
-        return storage;
+        return Storage;
     }
 
     public void setStorage(String storage) {
-        this.storage = storage;
+        Storage = storage;
     }
+
+    public String getTemperature() {
+        return Temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        Temperature = temperature;
+    }
+
+    public String getSampleType() {
+        return SampleType;
+    }
+
+    public void setSampleType(String sampleType) {
+        SampleType = sampleType;
+    }
+
+    @Override
+    public String toString() {
+        return "Sample{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+//                ", Cid=" + Cid +
+                ", ProductionDate='" + ProductionDate + '\'' +
+                ", ExpirationDate='" + ExpirationDate + '\'' +
+                ", Storage='" + Storage + '\'' +
+                ", Temperature='" + Temperature + '\'' +
+                ", SampleType='" + SampleType + '\'' +
+                '}';
+    }
+
+
 }
