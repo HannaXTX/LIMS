@@ -21,26 +21,30 @@ public class SampleController implements Initializable {
 
     @FXML
     private TableView<Sample> tbSample;
+
     @FXML
-    private TableColumn<Sample, Integer> colCode;
+    private TableColumn<Sample, String> colCode;
+
     @FXML
-    private TableColumn<Sample, String> colName, colRecDate, colProdDate, colExpDate, colTemp, colStorage,colType;
+    private TableColumn<Sample, String> colName, colProdDate, colExpDate, colStorage, colTemp, colType;
 
     @FXML
     private GridPane gpEmployee;
 
-    @FXML
-    ArrayList<Sample> sampleList = new ArrayList<>();
+    private ArrayList<Sample> sampleList = new ArrayList<>();
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        colCode.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCode()));
         colName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        colRecDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getReceiveDate()));
         colProdDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductionDate()));
         colExpDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getExpirationDate()));
-        colTemp.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTemperature()));
         colStorage.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStorage()));
-//        colType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get()));
+        colTemp.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTemperature()));
+        colType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSampleType()));
+
         try {
             fillTable();
         } catch (SQLException e) {
@@ -56,89 +60,22 @@ public class SampleController implements Initializable {
 
             while (resultSet.next()) {
                 Sample sample = new Sample(
-                        resultSet.getString("ID"),
+                        resultSet.getString("SCode"),
                         resultSet.getString("Name"),
-                        resultSet.getString("Receive_Date"),
-                        resultSet.getString("Production_Date"),
-                        resultSet.getString("Expiration_Date"),
+                        resultSet.getInt("CID"), // Use getInt for CID
+                        resultSet.getString("ProductionDate"),
+                        resultSet.getString("ExpirationDate"),
+                        resultSet.getString("Storage"),
                         resultSet.getString("Temperature"),
-                        resultSet.getString("Storage")
+                        resultSet.getString("IS_A")
                 );
                 sampleList.add(sample);
             }
             tbSample.setItems(FXCollections.observableList(sampleList));
-            resultSet.close();
         }
     }
-
-    public int SamplesCounter() {
-        return sampleList.size();
-    }
-
-    // for pie chart to show the num of Statistics in a month
-    public int numOfSamplesInMonth(ArrayList<Sample> samples, String month) {
-        int count = 0;
-        for (Sample sample : samples) {
-            String receiveDate = sample.getReceiveDate();
-            String sampleMonth = receiveDate.split("-")[1]; // Assuming 'receiveDate' is in the format "YYYY-MM-DD"
-
-            if (sampleMonth.equals(month)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    // Method to count samples by year
-    public int numOfSamplesInYear(ArrayList<Sample> samples, String year) {
-        int count = 0;
-        for (Sample sample : samples) {
-            String receiveDate = sample.getReceiveDate();
-            String sampleYear = receiveDate.split("-")[0]; // Assuming 'receiveDate' is in the format "YYYY-MM-DD"
-
-            if (sampleYear.equals(year)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    // Method to count samples by storage type
-    public int countSamplesByStorage(ArrayList<Sample> samples, String storageType) {
-        int count = 0;
-        for (Sample sample : samples) {
-            if (sample.getStorage().equalsIgnoreCase(storageType)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-
-    // Method to count samples that are expired
-    public int countExpiredSamples(ArrayList<Sample> samples, String currentDate) {
-        int count = 0;
-        for (Sample sample : samples) {
-            if (sample.getExpirationDate().compareTo(currentDate) < 0) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    // Method to find the sample with the earliest production date
-    public Sample earliestProductionSample(ArrayList<Sample> samples) {
-        Sample earliestSample = null;
-        for (Sample sample : samples) {
-            if (earliestSample == null || sample.getProductionDate().compareTo(earliestSample.getProductionDate()) < 0) {
-                earliestSample = sample;
-            }
-        }
-        return earliestSample;
-    }
-
 
     public void modifyTable() {
-
+        // Implementation
     }
 }
