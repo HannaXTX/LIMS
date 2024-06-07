@@ -4,6 +4,7 @@ module LIMS_DB {
     requires javafx.web;
     requires mysql.connector.java;
     requires java.desktop;
+    requires java.management;
 
     opens menus.login;
     opens menus.dashboard;

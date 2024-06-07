@@ -1,4 +1,8 @@
 use LIMS;
+
+
+
+DROP TABLE Employees;
 CREATE TABLE Employees (
                            ID INT NOT NULL AUTO_INCREMENT,
                            Name VARCHAR(255) NOT NULL,
@@ -12,7 +16,7 @@ CREATE TABLE Employees (
                            PRIMARY KEY (ID)
 );
 
- DROP TABLE Employees;
+
 
 SELECT  * FROM Employees;
 
