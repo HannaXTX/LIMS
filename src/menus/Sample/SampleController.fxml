@@ -26,15 +26,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <TableView fx:id="tbSample" prefHeight="279.0" prefWidth="942.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <columns>
 <!--                   private TableColumn<Sample, String> colName, colRecDate, colProdDate, colExpDate, colTemp, colStorage;-->
-
-                  <TableColumn fx:id="colCode" prefWidth="42.0" text="Code" />
+                   <TableColumn fx:id="colCode" prefWidth="42.0" text="Code" />
                   <TableColumn fx:id="colName" prefWidth="140.0" text="Name" />
-                  <TableColumn fx:id="colRecDate" prefWidth="120.0" text="CID" />
                   <TableColumn id="colAddress" fx:id="colProdDate" prefWidth="150.0" text="Production Date" />
                   <TableColumn fx:id="colExpDate" prefWidth="130.0" text="Expiration Date" />
                   <TableColumn fx:id="colStorage" prefWidth="82.0" text="Storage" />
