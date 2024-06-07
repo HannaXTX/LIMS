@@ -1,6 +1,7 @@
 package entities;
 
 // test
+// Rakan
 public class Certificate {
     private String code;
     private double totalPrice;
