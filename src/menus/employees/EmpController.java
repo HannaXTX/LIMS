@@ -1,33 +1,29 @@
 package menus.employees;
 
 import database.Connector;
+import database.Queries;
+import database.UtilFunctions;
 import entities.Employee;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import menus.login.Driver;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.ButtonType.YES;
 
 public class EmpController implements Initializable {
 
@@ -40,7 +36,7 @@ public class EmpController implements Initializable {
     @FXML
     private Button btAdd, btUpdate;
     @FXML
-    private TableView<Employee> tbEmployee;
+    private TableView<Employee> tvEmployee;
     @FXML
     private TableColumn<Employee, Integer> colId;
     @FXML
@@ -94,7 +90,7 @@ public class EmpController implements Initializable {
                 empList.add(employee);
 
             }
-            tbEmployee.setItems(FXCollections.observableList(empList));
+            tvEmployee.setItems(FXCollections.observableList(empList));
             resultSet.close();
 
         } catch (SQLException e) {
@@ -114,7 +110,7 @@ public class EmpController implements Initializable {
 
             EmployeeOperationController employeeOperationController = loader.getController();
             employeeOperationController.setEmployeeList(FXCollections.observableList(empList));
-            employeeOperationController.setTableView(tbEmployee);
+            employeeOperationController.setTableView(tvEmployee);
 
             modifyStage = new Stage();
             modifyStage.setScene(scene);
@@ -128,9 +124,9 @@ public class EmpController implements Initializable {
 
 
             EmployeeOperationController employeeOperationController = loader.getController();
-            employeeOperationController.setSelectedEmployee(tbEmployee.getSelectionModel().getSelectedItem());
+            employeeOperationController.setSelectedEmployee(tvEmployee.getSelectionModel().getSelectedItem());
             employeeOperationController.setEmployeeList(FXCollections.observableList(empList));
-            employeeOperationController.setTableView(tbEmployee);
+            employeeOperationController.setTableView(tvEmployee);
 
             modifyStage = new Stage();
             modifyStage.setScene(scene);
@@ -138,18 +134,24 @@ public class EmpController implements Initializable {
         }
     }
 
-//
-//    public void deleteEmployee(int id) {
-//        String query = "DELETE FROM Employees WHERE ID = " + id;
-//        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database_name", "username", "password");
-//             Statement statement = conn.createStatement()) {
-//            statement.executeUpdate(query);
-//            fillTable();  // Refresh the table view
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
+    public void deleteEmployee(javafx.event.ActionEvent actionEvent) throws SQLException {
+        Employee emp = tvEmployee.getSelectionModel().getSelectedItem();
+        UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
+                "are you sure you want to Delete Employee " + emp.getName() +" ?", YES).showAndWait().ifPresent(buttonType->{
+                    if (buttonType==YES){
+                        try {
+                            Queries.deleteEmployee(emp, emp.getId());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        tvEmployee.getItems().remove(emp);
+                        tvEmployee.refresh();
 
+                    }
+
+        });
+
+    }
 }
 

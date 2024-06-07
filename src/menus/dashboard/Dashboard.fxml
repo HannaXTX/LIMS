@@ -11,20 +11,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="gpDashboard" hgap="10.0" prefHeight="350.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gpDashboard" hgap="10.0" prefHeight="520.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.dashboard.DashBoardController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="350.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="351.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="0.0" prefWidth="222.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="280.0" minHeight="0.0" prefHeight="120.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="402.0" minHeight="10.0" prefHeight="264.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../../Assets/Labels/LabelBlocks.css">
          <children>
-            <Label alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="80.0" prefWidth="281.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="TOTAL NUMBER OF EMPLOYEES">
+            <Label fx:id="lblTotalEmp" alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="80.0" prefWidth="281.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="EMPLOYEES">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -43,9 +44,9 @@
             <String fx:value="labelBlock" />
          </styleClass>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="labelBlock" stylesheets="@../../Assets/Labels/LabelBlocks.css" GridPane.columnIndex="1">
+      <HBox prefHeight="145.0" prefWidth="335.0" styleClass="labelBlock" stylesheets="@../../Assets/Labels/LabelBlocks.css" GridPane.rowIndex="1">
          <children>
-            <Label alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="236.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="PENDING RESULTS">
+            <Label fx:id="lblPendResults" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="236.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="PENDING RESULTS">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -65,4 +66,10 @@
          </children>
       </HBox>
    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </GridPane>
