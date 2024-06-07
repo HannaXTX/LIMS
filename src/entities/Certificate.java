@@ -1,7 +1,7 @@
 package entities;
 
-// hanna
 
+// hanna
 public class Certificate {
     private String code;
     private double totalPrice;
