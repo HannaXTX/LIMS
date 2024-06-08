@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
@@ -20,6 +21,8 @@ public class Driver extends Application {
         launch(args);
 
         System.out.println("Hello world!");
+
+
     }
 
 

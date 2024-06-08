@@ -84,7 +84,7 @@ public class TestController implements Initializable {
 
     public void modifyTable(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btAdd) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestOperation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestOperationController.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -99,7 +99,7 @@ public class TestController implements Initializable {
 
         if (actionEvent.getSource() == btUpdate) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestOperation.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestOperationController.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
@@ -113,6 +113,7 @@ public class TestController implements Initializable {
                 modifyStage.show();
             } catch (Exception ex) {
                 UtilFunctions.createAlert("ERROR", "No Record Selected", "Please select a record to update", null).show();
+                ex.printStackTrace();
             }
         }
 

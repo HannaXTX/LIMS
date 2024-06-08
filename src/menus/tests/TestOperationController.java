@@ -42,7 +42,7 @@ public class TestOperationController implements Initializable {
 
 
     public void setTestData(Test test) {
-        tfTestId.setText(String.valueOf(test.getId()));
+        tfTestId.setText(test.getId()+"");
         tfTestName.setText(test.getName());
         cbSCode.setValue(test.getScode());
         cbEId.setValue(String.valueOf(test.getEid()));
