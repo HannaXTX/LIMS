@@ -25,6 +25,12 @@ VALUES ('Rakan Kaibni', '123-954-7890', 'Doctor', 'rakan.doe@example.com');
 INSERT INTO Customer (Name, PhoneNumber, Job, Email)
 VALUES ('Mazen Ahmed', '123-442-7890', 'Engineer', 'mazen.doe@example.com');
 
+SELECT * FROM Customer;
+
+DELETE FROM Customer WHERE Cid> 5;
+
+
+
 #Delete
 DELETE FROM Customer
 WHERE Name = 'George';

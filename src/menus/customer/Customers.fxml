@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="534.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.employees.EmpController">
+<AnchorPane prefHeight="534.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.customer.CustomerController">
 <!--        <fx:include source="../employees/CustomerOperation.fxml" />-->
     <children>
         <GridPane fx:id="gpEmployee" layoutX="-8.0" prefHeight="534.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
@@ -29,16 +29,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="tvEmployee" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                <TableView fx:id="tvCustomer" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="40.0" text="ID" />
                         <TableColumn fx:id="colName" prefWidth="200.0" text="NAME" />
-                        <TableColumn fx:id="colSSN" prefWidth="120.0" text="SSN" />
-                        <TableColumn id="colAddress" fx:id="colAddress" prefWidth="150.0" text="Address" />
-                        <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
-                        <TableColumn fx:id="colMajor" prefWidth="100.0" text="Major" />
-                        <TableColumn fx:id="colPhoneNumber" prefWidth="150.0" text="Phone" />
-                        <TableColumn fx:id="colEmail" prefWidth="250.0" text="Email" />
+                        <TableColumn fx:id="colJob" prefWidth="100.0" text="Job" />
+                        <TableColumn fx:id="colPhoneNumber" prefWidth="175.0" text="Phone" />
+                        <TableColumn fx:id="colEmail" prefWidth="259.0" text="Email" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

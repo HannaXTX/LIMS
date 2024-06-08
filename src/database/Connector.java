@@ -19,7 +19,7 @@ public class Connector {
         connectDB();
     }
 
-    public static  Connection getCon(){
+    public static Connection getCon(){
         return con;
     }
 

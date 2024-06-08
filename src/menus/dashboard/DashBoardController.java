@@ -32,7 +32,7 @@ public class DashBoardController implements Initializable {
     @FXML
     public Button btLogout, btEmployee, btDashboard;
     @FXML
-    Label lblTotalEmp, lblPendResult;
+    Label lblTotalEmp, lblPendResult, lblTotalSamples;
     public GridPane gpDashboard;
 
 //
@@ -50,6 +50,7 @@ public class DashBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             lblTotalEmp.setText(Queries.getEmployeeCount() + " " + lblTotalEmp.getText());
+            lblTotalSamples.setText(Queries.getSampleCount(0) + " " + lblTotalSamples.getText());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

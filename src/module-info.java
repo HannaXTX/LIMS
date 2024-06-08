@@ -10,6 +10,7 @@ module LIMS_DB {
     opens menus.dashboard;
     opens menus.employees;
     opens menus.Sample;
+    opens menus.customer;
 
     opens menus.main;
     opens entities;

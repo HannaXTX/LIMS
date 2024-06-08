@@ -1,14 +1,16 @@
 package entities;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Customer {
-    private String id;
+    private final SimpleIntegerProperty id;
     private String name;
     private String phoneNumber;
     private String email;
     private String job;
 
-    public Customer(String id, String name, String phoneNumber, String email, String job) {
-        setId(id);
+    public Customer(int id, String name, String phoneNumber, String email, String job) {
+        this.id = new SimpleIntegerProperty(id);
         setName(name);
         setPhoneNumber(phoneNumber);
         setEmail(email);
@@ -16,12 +18,12 @@ public class Customer {
     }
 
 
-    public String getId() {
+    public SimpleIntegerProperty getIdProperty() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public int getId() {
+        return id.get();
     }
 
     public String getName() {
