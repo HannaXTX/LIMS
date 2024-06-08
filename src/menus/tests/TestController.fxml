@@ -33,7 +33,7 @@
                     <columns>
                         <TableColumn fx:id="colTestId" prefWidth="40.0" text="TestId" />
                         <TableColumn fx:id="colSCode" prefWidth="120.0" text="SCode" />
-                        <TableColumn id="colEId" fx:id="colAddress" prefWidth="150.0" text="EId" />
+                        <TableColumn fx:id="colEId" prefWidth="150.0" text="EId" />
                         <TableColumn fx:id="colTestName" prefWidth="200.0" text="TestName" />
                         <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
 
