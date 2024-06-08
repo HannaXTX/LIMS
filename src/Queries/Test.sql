@@ -2,14 +2,17 @@ use LIMS;
 CREATE TABLE Test (
                       Tid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                       Name VARCHAR(255),
-                      SCode VARCHAR(255),
+                      SCode INT,
                       EID INT NOT NULL,
-                      price REAL,
+                      price REAL
 
-                      foreign key (EID) REFERENCES Employees(ID),
-                      foreign key (SCode) REFERENCES sample(SCode)
+#                       foreign key (EID) REFERENCES Employees(ID),
+#                       foreign key (SCode) REFERENCES Sample(SCode)
 
 );
+
+DROP TABLE Test;
+
 
 
 #insert some tests
@@ -18,26 +21,26 @@ SELECT * FROM Test;
 
 -- Insert first record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 'S001', 1, 100.50);
+VALUES ('Test A', 1, 1, 100.50);
 
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 'S006', 1, 100.50);
+VALUES ('Test A', 2, 1, 100.50);
 
 -- Insert second record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test B', 'S002', 2, 200.00);
+VALUES ('Test B', 5, 2, 200.00);
 
 -- Insert third record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test C', 'S003', 3, 300.25);
+VALUES ('Test C', 3, 3, 300.25);
 
 -- Insert fourth record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test D', 'S004', 4, 150.75);
+VALUES ('Test D', 4, 4, 150.75);
 
 -- Insert fifth record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test E', 'S005', 5, 250.00);
+VALUES ('Test E', 2, 5, 250.00);
 
 #Delete
 DELETE FROM Test
@@ -50,3 +53,10 @@ SET Name = 'Test D',
     EID = 4,
     price = 250.50
 WHERE Tid = 1;
+
+
+ALTER TABLE sample
+    DROP FOREIGN KEY sample_ibfk_2;
+
+
+DROP TABLE Test;
