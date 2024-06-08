@@ -43,8 +43,6 @@ public class CustomerController implements Initializable {
     private TableColumn<Customer, String> colName, colJob, colPhoneNumber, colEmail;
 
     private static Stage modifyStage;
-
-
     @FXML
     private GridPane gpEmployee;
 
