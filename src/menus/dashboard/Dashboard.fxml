@@ -18,9 +18,10 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="0.0" prefWidth="222.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="280.0" minHeight="0.0" prefHeight="120.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="402.0" minHeight="10.0" prefHeight="264.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="280.0" minHeight="10.0" percentHeight="25.0" prefHeight="120.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="280.0" minHeight="0.0" percentHeight="25.0" prefHeight="105.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="402.0" minHeight="10.0" percentHeight="25.0" prefHeight="116.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="402.0" minHeight="10.0" prefHeight="226.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../../Assets/Labels/LabelBlocks.css">
@@ -64,6 +65,27 @@
                </viewport>
             </ImageView>
          </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../../Assets/Labels/LabelBlocks.css" GridPane.rowIndex="2">
+         <children>
+            <Label fx:id="lblTotalSamples" alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="80.0" prefWidth="281.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="SAMPLES">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ImageView fitHeight="79.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" styleClass="labelBlock">
+               <image>
+                  <Image url="@../../Assets/Icons/Sample2.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </children>
+         <styleClass>
+            <String fx:value="imageInBlock" />
+            <String fx:value="labelBlock" />
+         </styleClass>
       </HBox>
    </children>
    <opaqueInsets>
