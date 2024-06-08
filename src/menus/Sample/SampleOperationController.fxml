@@ -26,7 +26,7 @@
                 <RowConstraints maxHeight="375.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <VBox prefHeight="288.0" prefWidth="136.0">
+                <VBox prefHeight="308.0" prefWidth="123.0">
                     <children>
                         <Label graphicTextGap="3.0" text="Name">
                             <opaqueInsets>
@@ -112,6 +112,20 @@
                                 <Insets bottom="10.0" />
                             </padding>
                         </Label>
+                        <Label graphicTextGap="3.0" text="Sample Type">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <VBox.margin>
+                                <Insets left="30.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="10.0" />
+                            </padding>
+                        </Label>
                     </children>
                     <padding>
                         <Insets left="-15.0" top="22.0" />
@@ -134,48 +148,41 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="tfSSN" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
-                            <padding>
+                        <DatePicker fx:id="dpReceiveDate" prefWidth="180.0">
+                            <VBox.margin>
                                 <Insets bottom="10.0" />
-                            </padding>
+                            </VBox.margin>
+                        </DatePicker>
+                        <DatePicker fx:id="dpProdDate" prefWidth="180.0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </DatePicker>
+                        <DatePicker fx:id="dpExpDate" prefWidth="180.0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </DatePicker>
+                        <TextField fx:id="tfTemperature" maxWidth="180.0" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="tfAddress" maxWidth="180.0" prefWidth="180.0">
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
+                        <TextField fx:id="tfStorage" maxWidth="180.0" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <DatePicker fx:id="dpDate" prefWidth="180.0">
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin></DatePicker>
-                        <ComboBox fx:id="cbMajor" prefWidth="180.0">
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin></ComboBox>
-                        <TextField fx:id="tfPhoneNumber" maxWidth="180.0" prefWidth="180.0">
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
+                        <ComboBox fx:id="cbSampleType" maxWidth="180.0" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
-                        </TextField>
-                        <TextField fx:id="tfEmail" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
-                        </TextField>
+                        </ComboBox>
                     </children>
                 </VBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Button fx:id="btDone" mnemonicParsing="false" onAction="#addEvent" text="Done">
+                        <Button fx:id="btDone" mnemonicParsing="false" onAction="#addEvent" prefHeight="39.0" prefWidth="75.0" text="Done">
                             <HBox.margin>
                                 <Insets right="30.0" />
                             </HBox.margin>
@@ -183,7 +190,10 @@
                                 <Font size="18.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btCancel" mnemonicParsing="false" onAction="#cancelEvent" text="Cancel" />
+                        <Button fx:id="btCancel" mnemonicParsing="false" onAction="#cancelEvent" prefHeight="39.0" prefWidth="89.0" text="Cancel">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
                     </children>
                     <GridPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
