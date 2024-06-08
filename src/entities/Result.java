@@ -1,54 +1,69 @@
 package entities;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Result {
+    private SimpleIntegerProperty resId;
+    private SimpleStringProperty unit;
+    private SimpleStringProperty description;
+    private SimpleStringProperty date;
 
-    public enum Status {
-        PENDING,
-        REJECTED,
-        APPROVED
+    public Result(int resId, String unit, String description, String date) {
+        this.resId = new SimpleIntegerProperty(resId);
+        this.unit = new SimpleStringProperty(unit);
+        this.description = new SimpleStringProperty(description);
+        this.date = new SimpleStringProperty(date);
     }
 
-    private String id;
-    private String unit;
-    private String description;
-    private String date;
-
-    public Result(String id, String unit, String description, String date) {
-        setId(id);
-        setUnit(unit);
-        setDescription(description);
-        setDate(date);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    // Getters
+    public int getResId() {
+        return resId.get();
     }
 
     public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
+        return unit.get();
     }
 
     public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        return description.get();
     }
 
     public String getDate() {
-        return date;
+        return date.get();
+    }
+
+    // Setters
+    public void setResId(int resId) {
+        this.resId.set(resId);
+    }
+
+    public void setUnit(String unit) {
+        this.unit.set(unit);
+    }
+
+    public void setDescription(String description) {
+        this.description.set(description);
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date.set(date);
+    }
+
+    // Property getters for JavaFX bindings
+    public SimpleIntegerProperty resIdProperty() {
+        return resId;
+    }
+
+    public SimpleStringProperty unitProperty() {
+        return unit;
+    }
+
+    public SimpleStringProperty descriptionProperty() {
+        return description;
+    }
+
+    public SimpleStringProperty dateProperty() {
+        return date;
     }
 }
