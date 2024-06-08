@@ -3,9 +3,7 @@ package database;
 import entities.Customer;
 import entities.Employee;
 import entities.Sample;
-import org.w3c.dom.ls.LSOutput;
 
-import javax.management.Query;
 import java.sql.*;
 
 public class Queries {

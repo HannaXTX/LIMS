@@ -3,14 +3,14 @@ package entities;
 import javafx.beans.property.*;
 
 public class Test {
-    private final StringProperty id;
+    private final SimpleIntegerProperty id;
     private final StringProperty name;
-    private final DoubleProperty price;
+    private final SimpleDoubleProperty price;
     private final StringProperty scode;
-    private final IntegerProperty eid;
+    private final SimpleIntegerProperty eid;
 
-    public Test(String id, String name, double price, String scode, int eid) {
-        this.id = new SimpleStringProperty(id);
+    public Test(int id, String name, String scode, int eid, double price) {
+        this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
         this.scode = new SimpleStringProperty(scode);
@@ -18,16 +18,21 @@ public class Test {
     }
 
     // ID
-    public String getId() {
+    public int getId() {
         return id.get();
     }
 
-    public void setId(String id) {
-        this.id.set(id);
+
+    public SimpleIntegerProperty getIdProperty() {
+        return id;
     }
 
-    public StringProperty idProperty() {
-        return id;
+    public SimpleDoubleProperty getPriceProperty() {
+        return price;
+    }
+
+    public SimpleIntegerProperty getEidProperty() {
+        return eid;
     }
 
     // Name

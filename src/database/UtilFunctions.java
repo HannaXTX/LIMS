@@ -1,7 +1,6 @@
 package database;
 
 import entities.Employee;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;

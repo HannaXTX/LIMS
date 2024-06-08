@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="534.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.employees.EmpController">
+<AnchorPane prefHeight="534.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.tests.TestController">
     <!--        <fx:include source="../employees/EmployeeOperation.fxml" />-->
     <children>
         <GridPane fx:id="gpTest" layoutX="-8.0" prefHeight="534.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +29,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="tbTest" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                <TableView fx:id="tvTest" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
                         <TableColumn fx:id="colTestId" prefWidth="40.0" text="TestId" />
                         <TableColumn fx:id="colSCode" prefWidth="120.0" text="SCode" />
