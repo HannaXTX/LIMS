@@ -1,13 +1,14 @@
 package database;
 
-import entities.Customer;
-import entities.Employee;
-import entities.Sample;
-import entities.Test;
+import entities.*;
 
 import java.sql.*;
 
 public class Queries {
+
+    public static void deleteResult(Result res, int resId) {
+
+    }
 
     public String addEmployeeToDB(Employee emp) {
         return "INSERT INTO EMPLOYEE VALUES.........";
