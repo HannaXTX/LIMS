@@ -1,54 +1,71 @@
 use LIMS;
-CREATE TABLE Test (
-                      Tid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                      Name VARCHAR(255),
-                      SCode VARCHAR(255),
-                      EID INT NOT NULL,
-                      price REAL,
+CREATE TABLE Test
+(
+    Tid   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Name  VARCHAR(255),
+    SCode INT,
+    EID   INT NOT NULL,
+    price REAL
 
-                      foreign key (EID) REFERENCES Employees(ID),
-                      foreign key (SCode) REFERENCES sample(SCode)
+#                       foreign key (EID) REFERENCES Employees(ID),
+#                       foreign key (SCode) REFERENCES Sample(SCode)
 
 );
+
+DROP TABLE Test;
 
 
 #insert some tests
 
-SELECT * FROM Test;
+SELECT *
+FROM Test;
 
 -- Insert first record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 'S001', 1, 100.50);
+VALUES ('Test A', 1, 1, 100.50);
 
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 'S006', 1, 100.50);
+VALUES ('Test A', 2, 1, 100.50);
 
 -- Insert second record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test B', 'S002', 2, 200.00);
+VALUES ('Test B', 5, 2, 200.00);
 
 -- Insert third record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test C', 'S003', 3, 300.25);
+VALUES ('Test C', 3, 3, 300.25);
 
 -- Insert fourth record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test D', 'S004', 4, 150.75);
+VALUES ('Test D', 4, 4, 150.75);
 
 -- Insert fifth record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test E', 'S005', 5, 250.00);
+VALUES ('Test E', 2, 5, 250.00);
 
 #Delete
-DELETE FROM Test
+DELETE
+FROM Test
 WHERE Tid = 2;
 
 #Update
 UPDATE Test
-SET Name = 'Test D',
+SET Name  = 'Test D',
     SCode = 'SC126',
-    EID = 4,
+    EID   = 4,
     price = 250.50
 WHERE Tid = 1;
 
+
 drop table Test;
+
+ALTER TABLE test
+    DROP FOREIGN KEY sample_ibfk_2,
+    DROP FOREIGN KEY employee_ibfk_2;
+
+
+DROP TABLE Test;
+
+ALTER TABLE test
+    ADD CONSTRAINT sample_ibfk_2 foreign key (SCode) REFERENCES Sample(SCode),
+    ADD CONSTRAINT  employee_ibfk_2    foreign key (EID) REFERENCES Employees(ID);
