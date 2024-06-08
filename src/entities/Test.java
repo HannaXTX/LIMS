@@ -86,4 +86,8 @@ public class Test {
     public IntegerProperty eidProperty() {
         return eid;
     }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
 }

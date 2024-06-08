@@ -50,3 +50,5 @@ SET Name = 'Test D',
     EID = 4,
     price = 250.50
 WHERE Tid = 1;
+
+drop table Test;
