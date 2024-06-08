@@ -1,5 +1,6 @@
 package database;
 
+import entities.Customer;
 import entities.Employee;
 import entities.Sample;
 import org.w3c.dom.ls.LSOutput;
@@ -68,9 +69,58 @@ public class Queries {
 
     }
 
+
     public static Statement deleteEmployee(Employee emp, int id) throws SQLException {
 
         String query = "DELETE FROM Employees WHERE ID  = ?";
+        PreparedStatement statement = Connector.getCon().prepareStatement(query);
+        statement.setInt(1, id);
+        System.out.println(statement.executeUpdate());
+        return statement;
+
+    }
+
+
+    public static Statement updateEmployeeInDB(int id, String name, String job,
+                                               String phoneNumber, String email) throws SQLException {
+
+//        String query = "UPDATE Employees SET Name = '" + name + "', SSN = '" + ssn + "', Address = '" + address + "', " +
+//                "DateOfBirth = '" + dateOfBirth + "', Major = '" + major + "', PhoneNumber = '" + phoneNumber + "', " +
+//                "Email = '" + email + "' WHERE ID = " + id;
+//
+//        Statement statement = Connector.getCon().createStatement();
+
+        String query = "UPDATE CUSTOMER SET Name = ?, PhoneNumber = ?, Email = ?, Job = ? WHERE ID = ?";
+
+        PreparedStatement statement = Connector.getCon().prepareStatement(query);
+
+        statement.setString(1, name);
+        statement.setString(2, job);
+        statement.setString(3, phoneNumber);
+        statement.setString(4, email);
+        statement.setInt(5, id);
+
+//        System.out.println(statement);
+
+        System.out.println(statement.executeUpdate());
+
+//        if (statement.execute(query)) {
+//            System.out.println(".");
+//            statement.executeUpdate(query);
+//        }
+//        else {
+//            System.out.println("error");
+//        }
+
+        return statement;
+
+
+    }
+
+
+    public static Statement deleteCustomer(Customer cus, int id) throws SQLException {
+
+        String query = "DELETE FROM CUSTOMER WHERE ID  = ?";
         PreparedStatement statement = Connector.getCon().prepareStatement(query);
         statement.setInt(1, id);
         System.out.println(statement.executeUpdate());
@@ -94,6 +144,7 @@ public class Queries {
             return count;
         }
     }
+
 
 
     public static void updateSampleInDB(String code, String name, String productionDate, String expirationDate, String storage, String temperature, String sampleType) throws SQLException {
@@ -146,5 +197,30 @@ public class Queries {
         }
         return count;
     }
+
+
+    public static int getSampleCount(int number) throws SQLException {
+        int count = 0;
+        String query = "";
+        if (number == 0) {
+            query = "SELECT COUNT(*) FROM SAMPLE";  //returns all samples in system
+        } else {
+//            query = "SELECT COUNT(*) FROM SAMPLE WHERE C = " + number;  //returns specific employee Samples
+        }
+
+
+        PreparedStatement stmt = Connector.getCon().prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+        {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+
+
+            return count;
+        }
+    }
+
+
 
 }
