@@ -45,7 +45,10 @@ public class SampleController implements Initializable {
     @FXML
     private TableView<Sample> tbSample;
     @FXML
-    private TableColumn<Sample, String> colCode, colName, colProdDate, colExpDate, colStorage, colTemp, colType;
+    private TableColumn<Sample, String>  colName, colProdDate, colExpDate, colStorage, colTemp, colType;
+
+    @FXML
+    private TableColumn<Sample, Integer> colCode;
 
 
     private ArrayList<Sample> sampleList = new ArrayList<>();
@@ -55,10 +58,7 @@ public class SampleController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        colCode.setCellValueFactory(cellData -> {
-            int code = cellData.getValue().getCode();
-            return new SimpleStringProperty(String.valueOf(code));
-        });
+        colCode.setCellValueFactory(cellData -> cellData.getValue().getCodeProperty().asObject());
         colName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         colProdDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductionDate()));
         colExpDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getExpirationDate()));
@@ -80,33 +80,26 @@ public class SampleController implements Initializable {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                int code;
-                try {
-                    code = resultSet.getInt("SCode");
-                } catch (SQLException e) {
-                    // Handle non-integer values gracefully
-                    // For example, set code to a default value or log a warning
-                    code = -1; // Set to a default value or handle according to your requirements
-                }
-
                 Sample sample = new Sample(
-                        code,
+                        resultSet.getInt("SCode"),
                         resultSet.getString("Name"),
-                        resultSet.getInt("CID"),
+                        resultSet.getInt("Cid"),
                         resultSet.getString("ProductionDate"),
                         resultSet.getString("ExpirationDate"),
                         resultSet.getString("Storage"),
                         resultSet.getString("Temperature"),
                         resultSet.getString("IS_A")
                 );
+
+//                        Tid INT,
                 sampleList.add(sample);
             }
             tbSample.setItems(FXCollections.observableList(sampleList));
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-
-
-
 
     public void modifyTable(javafx.event.ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btAddSample) {
@@ -138,12 +131,6 @@ public class SampleController implements Initializable {
             modifyStage.show();
         }
     }
-
-
-
-
-
-
     @FXML
     public void deleteSample (ActionEvent actionEvent) throws SQLException {
         entities.Sample sample = tbSample.getSelectionModel().getSelectedItem();
@@ -163,25 +150,9 @@ public class SampleController implements Initializable {
 
 
 
-    public void addSample(ActionEvent actionEvent) throws SQLException {
-        sampleOperationController.addEvent(actionEvent);
-    }
-
-    public void updateSample(ActionEvent actionEvent) {
-    }
-
-    public void clearSample(ActionEvent actionEvent) {
-    }
-
-
     public static Stage getModifyStage() {
         return modifyStage;
     }
-
-    public static void setModifyStage(Stage modifyStage) {
-        SampleController.modifyStage = modifyStage;
-    }
-
 
 
 }

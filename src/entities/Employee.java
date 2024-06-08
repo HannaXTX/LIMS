@@ -6,8 +6,6 @@ public class Employee {
 
     private final SimpleIntegerProperty id;
     private String name;
-
-
     private String ssn;
     private String address;
     private String dateOfBirth;

@@ -39,6 +39,9 @@ public class EmployeeOperationController implements Initializable {
     }
 
 
+    private int getNextId() {
+        return employeeList.stream().mapToInt(Employee::getId).max().orElse(0) + 1;
+    }
     @FXML
     public Employee saveEmployee() {
         Employee newEmployee = new Employee(
@@ -57,18 +60,6 @@ public class EmployeeOperationController implements Initializable {
     }
 
 
-    public void updateEmployee() {
-        emp.setName(tfName.getText());
-        emp.setSsn(tfSSN.getText());
-        emp.setAddress(tfAddress.getText());
-        emp.setDateOfBirth(dpDate.getValue().toString());
-        emp.setMajor(cbMajor.getValue());
-        emp.setPhoneNumber(tfPhoneNumber.getText());
-        emp.setEmail(tfEmail.getText());
-        tableView.refresh();
-    }
-
-
     public void setEmpData(Employee emp) {
         tfName.setText(emp.getName());
         tfSSN.setText(emp.getSsn());
@@ -80,15 +71,20 @@ public class EmployeeOperationController implements Initializable {
     }
 
 
-    private int getNextId() {
-        return employeeList.stream().mapToInt(Employee::getId).max().orElse(0) + 1;
+    public void updateEmployee() {
+        emp.setName(tfName.getText());
+        emp.setSsn(tfSSN.getText());
+        emp.setAddress(tfAddress.getText());
+        emp.setDateOfBirth(dpDate.getValue().toString());
+        emp.setMajor(cbMajor.getValue());
+        emp.setPhoneNumber(tfPhoneNumber.getText());
+        emp.setEmail(tfEmail.getText());
+        tableView.refresh();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cbMajor.getItems().addAll("Biology", "Chemistry", "Finance");
-
-
     }
 
     public void cancelEvent(ActionEvent actionEvent) {
@@ -99,6 +95,7 @@ public class EmployeeOperationController implements Initializable {
         emp = employee;
         setEmpData(emp);
     }
+
 
     public void addEvent(ActionEvent actionEvent) throws SQLException {
         try {

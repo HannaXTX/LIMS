@@ -2,13 +2,13 @@ package menus.Sample;
 
 import database.Queries;
 import database.UtilFunctions;
+import entities.Employee;
 import entities.Sample;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import menus.employees.EmpController;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -52,18 +52,9 @@ public class SampleOperationController implements Initializable {
         cbSampleType.setValue(sample.getSampleType());
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        cbSampleType.getItems().addAll("Human Food", "Animal feed", "Drinking Water", "Bottled water");
-    }
 
-    public void cancelEvent(ActionEvent actionEvent) {
-        menus.Sample.SampleController.getModifyStage().close();
-    }
-
-    public void setSelectedSample(Sample sample) {
-        this.sample = sample;
-        setSampleData(sample);
+    private int getNextCid() {
+        return sampleList.stream().mapToInt(Sample::getCode).max().orElse(0) + 1;
     }
 
     @FXML
@@ -71,7 +62,7 @@ public class SampleOperationController implements Initializable {
         try {
             int code = Integer.parseInt(txtCode.getText()); // Parse text to int
             Sample newSample = new Sample(
-                    code, // Use parsed int code
+                    getNextCid(),
                     txtName.getText(),
                     0, // Replace with actual Cid if needed
                     dpProdDate.getValue().toString(),
@@ -94,7 +85,6 @@ public class SampleOperationController implements Initializable {
 
     public void updateSample() {
         if (sample != null) { // Check if sample is initialized
-            sample.setCode(Integer.parseInt(txtCode.getText()));
             sample.setName(txtName.getText());
             sample.setProductionDate(dpProdDate.getValue().toString());
             sample.setExpirationDate(dpExpDate.getValue().toString());
@@ -107,26 +97,24 @@ public class SampleOperationController implements Initializable {
         }
     }
 
-
-    public void deleteSample(ActionEvent actionEvent) throws SQLException {
-        if (tableView != null) { // Check if tableView is initialized
-            Sample sample = tableView.getSelectionModel().getSelectedItem();
-            if (sample != null) { // Check if sample is selected
-                UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                        "Are you sure you want to delete Sample " + sample.getName() + "?", YES).showAndWait().ifPresent(buttonType -> {
-                    if (buttonType == YES) {
-                        try {
-                            Queries.deleteSample(sample, String.valueOf(sample.getCode()));
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                        tableView.getItems().remove(sample);
-                        tableView.refresh();
-                    }
-                });
-            }
-        }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        cbSampleType.getItems().addAll("Human Food", "Animal feed", "Drinking Water", "Bottled water");
     }
+
+    public void cancelEvent(ActionEvent actionEvent) {
+        menus.Sample.SampleController.getModifyStage().close();
+    }
+
+    public void setSelectedSample(Sample sample) {
+        this.sample = sample;
+        setSampleData(sample);
+    }
+
+
+
+
+
 
     public void addEvent(ActionEvent actionEvent) throws SQLException {
        try {
