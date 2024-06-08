@@ -5,18 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import entities.Test; // Ensure this import is correct based on your package structure
 
 public class TestController {
     @FXML
     private TableView<Test> testTableView;
     @FXML
-    private TableColumn<Test, Integer> tidColumn;
+    private TableColumn<Test, String> tidColumn;
     @FXML
     private TableColumn<Test, String> nameColumn;
     @FXML
@@ -24,21 +20,24 @@ public class TestController {
     @FXML
     private TableColumn<Test, Integer> eidColumn;
     @FXML
-    private TableColumn<Test, Float> priceColumn;
+    private TableColumn<Test, Double> priceColumn;
 
     private ObservableList<Test> testList;
 
     public void initialize() {
-        tidColumn.setCellValueFactory(new PropertyValueFactory<>("Tid"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        scodeColumn.setCellValueFactory(new PropertyValueFactory<>("SCode"));
-        eidColumn.setCellValueFactory(new PropertyValueFactory<>("EID"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        tidColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+        scodeColumn.setCellValueFactory(cellData -> cellData.getValue().scodeProperty());
+        eidColumn.setCellValueFactory(cellData -> cellData.getValue().eidProperty().asObject());
+
 
         testList = FXCollections.observableArrayList();
-
         testTableView.setItems(testList);
+
+
     }
 
 
-}
+    }
+
