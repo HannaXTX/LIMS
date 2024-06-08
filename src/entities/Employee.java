@@ -2,13 +2,10 @@ package entities;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.AbstractMap;
-
 public class Employee {
 
     private final SimpleIntegerProperty id;
     private String name;
-
 
 
     private String ssn;
@@ -48,6 +45,7 @@ public class Employee {
             default -> throw new IndexOutOfBoundsException("Invalid index: " + i);
         };
     }
+
     public SimpleIntegerProperty getIdProperty() {
         return id;
     }

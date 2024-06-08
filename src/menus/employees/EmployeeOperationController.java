@@ -1,6 +1,5 @@
 package menus.employees;
 
-import database.Connector;
 import database.Queries;
 import database.UtilFunctions;
 import entities.Employee;
@@ -9,12 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 

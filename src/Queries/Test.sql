@@ -6,33 +6,38 @@ CREATE TABLE Test (
                       EID INT NOT NULL,
                       price REAL,
 
-                      foreign key (EID) REFERENCES Employees(EID),
-                      foreign key (SCode) REFERENCES Employees(SCode)
+                      foreign key (EID) REFERENCES Employees(ID),
+                      foreign key (SCode) REFERENCES sample(SCode)
 
 );
 
 
 #insert some tests
 
+SELECT * FROM Test;
+
 -- Insert first record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 'SC123', 1, 100.50);
+VALUES ('Test A', 'S001', 1, 100.50);
+
+INSERT INTO Test (Name, SCode, EID, price)
+VALUES ('Test A', 'S006', 1, 100.50);
 
 -- Insert second record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test B', 'SC124', 2, 200.00);
+VALUES ('Test B', 'S002', 2, 200.00);
 
 -- Insert third record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test C', 'SC125', 3, 300.25);
+VALUES ('Test C', 'S003', 3, 300.25);
 
 -- Insert fourth record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test D', 'SC126', 4, 150.75);
+VALUES ('Test D', 'S004', 4, 150.75);
 
 -- Insert fifth record
 INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test E', 'SC127', 5, 250.00);
+VALUES ('Test E', 'S005', 5, 250.00);
 
 #Delete
 DELETE FROM Test
