@@ -39,8 +39,6 @@ public class SampleController implements Initializable {
     @FXML
     private DatePicker dpProdDate, dpExpDate;
     @FXML
-    private ComboBox<String> cbSampleType;
-    @FXML
     private Button btAddSample, btUpdateSample, btDeleteSample;
     @FXML
     private TableView<Sample> tbSample;
