@@ -21,7 +21,7 @@ public class SampleOperationController implements Initializable {
 
     public TextField tfName,tfTemperature,tfStorage;
     public DatePicker dpReceiveDate;
-    public ComboBox dbSampleType;
+
     @FXML
     private DatePicker dpProdDate, dpExpDate;
     @FXML
@@ -43,13 +43,11 @@ public class SampleOperationController implements Initializable {
     }
 
     public void setSampleData(Sample sample) {
-        this.sample = sample;
-        txtCode.setText(Integer.toString(sample.getCode()));
-        txtName.setText(sample.getName());
+        tfName.setText(sample.getName());
         dpProdDate.setValue(LocalDate.parse(sample.getProductionDate()));
         dpExpDate.setValue(LocalDate.parse(sample.getExpirationDate()));
-        txtStorage.setText(sample.getStorage());
-        txtTemperature.setText(sample.getTemperature());
+        tfStorage.setText(sample.getStorage());
+        tfTemperature.setText(sample.getTemperature());
         cbSampleType.setValue(sample.getSampleType());
     }
 
@@ -61,15 +59,15 @@ public class SampleOperationController implements Initializable {
     @FXML
     public Sample saveSample() {
         try {
-            int code = Integer.parseInt(txtCode.getText()); // Parse text to int
+           // Parse text to int
             Sample newSample = new Sample(
                     getNextCid(),
-                    txtName.getText(),
+                    tfName.getText(),
                     0, // Replace with actual Cid if needed
                     dpProdDate.getValue().toString(),
                     dpExpDate.getValue().toString(),
-                    txtStorage.getText(),
-                    txtTemperature.getText(),
+                    tfStorage.getText(),
+                    tfTemperature.getText(),
                     cbSampleType.getValue()
             );
             if (sampleList != null) { // Check if sampleList is initialized
@@ -86,11 +84,11 @@ public class SampleOperationController implements Initializable {
 
     public void updateSample() {
         if (sample != null) { // Check if sample is initialized
-            sample.setName(txtName.getText());
+            sample.setName(tfName.getText());
             sample.setProductionDate(dpProdDate.getValue().toString());
             sample.setExpirationDate(dpExpDate.getValue().toString());
-            sample.setStorage(txtStorage.getText());
-            sample.setTemperature(txtTemperature.getText());
+            sample.setStorage(tfStorage.getText());
+            sample.setTemperature(tfTemperature.getText());
             sample.setSampleType(cbSampleType.getValue());
             if (tableView != null) { // Check if tableView is initialized
                 tableView.refresh();
@@ -132,11 +130,11 @@ public class SampleOperationController implements Initializable {
                System.out.println(sample.getCode());
                Queries.updateSampleInDB(
                        String.valueOf(sample.getCode()),
-                       txtName.getText(),
+                       tfName.getText(),
                        dpProdDate.getValue().toString(),
                        dpExpDate.getValue().toString(),
-                       txtStorage.getText(),
-                       txtTemperature.getText(),
+                       tfStorage.getText(),
+                       tfTemperature.getText(),
                        cbSampleType.getValue()
                );
 

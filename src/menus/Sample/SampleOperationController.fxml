@@ -173,7 +173,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <ComboBox fx:id="dbSampleType" maxWidth="180.0" prefWidth="180.0">
+                        <ComboBox fx:id="cbSampleType" maxWidth="180.0" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
