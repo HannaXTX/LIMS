@@ -11,8 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class LoginController extends MenuManager {
 
@@ -23,7 +25,10 @@ public class LoginController extends MenuManager {
 
     private FadeTransition fadeTransition;
 
-    public void initialize() {
+
+
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
         fadeTransition = new FadeTransition(Duration.millis(300), btLogin);
         fadeTransition.setFromValue(1.0);
@@ -55,6 +60,9 @@ public class LoginController extends MenuManager {
     public void btExitAction(ActionEvent actionEvent) {
         System.exit(0);
     }
+
+
+
 }
 
 

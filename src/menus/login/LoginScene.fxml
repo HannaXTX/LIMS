@@ -48,7 +48,7 @@
                      <Font size="18.0" />
                   </font>
                </PasswordField>
-               <Button fx:id="btLogin" lineSpacing="1.0" onAction="#loginButtonAction" onMouseEntered="#initialize" prefHeight="56.0" prefWidth="117.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/LoginButtonStyle.css" text="Login">
+               <Button fx:id="btLogin" lineSpacing="1.0" onAction="#loginButtonAction" prefHeight="56.0" prefWidth="117.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/LoginButtonStyle.css" text="Login">
                   <font>
                      <Font size="21.0" />
                   </font>

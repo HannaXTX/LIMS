@@ -1,9 +1,8 @@
 package menus;
 
+import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
-public abstract class MenuManager extends Stage {
+public abstract class MenuManager implements Initializable {
 
-//REQUIRED BY FXML TO LOAD ANYTHING
-    public abstract void initialize();
 }
