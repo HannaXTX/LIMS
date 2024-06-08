@@ -99,10 +99,6 @@ public class EmpController implements Initializable {
         }
     }
 
-    public static Stage getModifyStage() {
-        return modifyStage;
-    }
-
     public void modifyTable(javafx.event.ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btAdd) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/employees/EmployeeOperation.fxml"));
@@ -159,5 +155,13 @@ public class EmpController implements Initializable {
         });
 
     }
+
+    public static Stage getModifyStage() {
+        return modifyStage;
+    }
+
+
+
+
 }
 

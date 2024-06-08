@@ -1,112 +1,114 @@
 package entities;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Sample {
-    private int code;
+
+    private final SimpleIntegerProperty code;
     private String name;
-    private int Cid;
-    private String ProductionDate;
-    private String ExpirationDate;
-    private String Storage;
-    private String Temperature;
-    private String SampleType;
+    private String productionDate;
+    private String expirationDate;
+    private String storage;
+    private String temperature;
+    private String sampleType;
 
-    public Sample(int code,
-                  String name,
-                  int cid,
-                  String productionDate,
-                  String expirationDate,
-                  String storage,
-                  String temperature,
-                  String sampleType) {
-
-
-        this.code = code;
+    public Sample(int code, String name, int cid, String productionDate, String expirationDate, String storage, String temperature, String sampleType) {
+        this.code = new SimpleIntegerProperty(code);
         this.name = name;
-//        Cid = cid;
-        ProductionDate = productionDate;
-        ExpirationDate = expirationDate;
-        Storage = storage;
-        Temperature = temperature;
-        SampleType = sampleType;
+        this.productionDate = productionDate;
+        this.expirationDate = expirationDate;
+        this.storage = storage;
+        this.temperature = temperature;
+        this.sampleType = sampleType;
     }
 
-    public int getCode() {
+    static String[] sampleComponents = {"Code", "Name", "Production Date", "Expiration Date", "Storage", "Temperature", "Sample Type"};
+
+    public static String[] getComponents() {
+        return sampleComponents;
+    }
+
+    public SimpleIntegerProperty codeProperty() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public String get(int i) {
+        return switch (i) {
+            case 1 -> getName();
+            case 2 -> getProductionDate();
+            case 3 -> getExpirationDate();
+            case 4 -> getStorage();
+            case 5 -> getTemperature();
+            case 6 -> getSampleType();
+            default -> throw new IndexOutOfBoundsException("Invalid index: " + i);
+        };
+    }
+
+    public SimpleIntegerProperty getCodeProperty() {
+        return code;
+    }
+
+    public int getCode() {
+        return code.get();
     }
 
     public String getName() {
         return name;
     }
 
+    public String getProductionDate() {
+        return productionDate;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public String getSampleType() {
+        return sampleType;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-     public int getCid() {
-         return Cid;
-     }
-
-     public void setCid(int cid) {
-         Cid = cid;
-     }
-
-    public String getProductionDate() {
-        return ProductionDate;
-    }
-
     public void setProductionDate(String productionDate) {
-        ProductionDate = productionDate;
-    }
-
-    public String getExpirationDate() {
-        return ExpirationDate;
+        this.productionDate = productionDate;
     }
 
     public void setExpirationDate(String expirationDate) {
-        ExpirationDate = expirationDate;
-    }
-
-    public String getStorage() {
-        return Storage;
+        this.expirationDate = expirationDate;
     }
 
     public void setStorage(String storage) {
-        Storage = storage;
-    }
-
-    public String getTemperature() {
-        return Temperature;
+        this.storage = storage;
     }
 
     public void setTemperature(String temperature) {
-        Temperature = temperature;
-    }
-
-    public String getSampleType() {
-        return SampleType;
+        this.temperature = temperature;
     }
 
     public void setSampleType(String sampleType) {
-        SampleType = sampleType;
+        this.sampleType = sampleType;
     }
 
-    @Override
-    public String toString() {
-        return "Sample{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-//                ", Cid=" + Cid +
-                ", ProductionDate='" + ProductionDate + '\'' +
-                ", ExpirationDate='" + ExpirationDate + '\'' +
-                ", Storage='" + Storage + '\'' +
-                ", Temperature='" + Temperature + '\'' +
-                ", SampleType='" + SampleType + '\'' +
-                '}';
+    public static void setSample(String[] sampleComponents) {
+        Sample.sampleComponents = sampleComponents;
     }
 
+    public static String[] getSampleComponents() {
+        return sampleComponents;
+    }
 
+    public static void setSampleComponents(String[] sampleComponents) {
+        Sample.sampleComponents = sampleComponents;
+    }
 }
