@@ -57,6 +57,7 @@ SET Name  = 'Test D',
 WHERE Tid = 1;
 
 
+drop table Test;
 
 ALTER TABLE test
     DROP FOREIGN KEY sample_ibfk_2,
@@ -68,6 +69,3 @@ DROP TABLE Test;
 ALTER TABLE test
     ADD CONSTRAINT sample_ibfk_2 foreign key (SCode) REFERENCES Sample(SCode),
     ADD CONSTRAINT  employee_ibfk_2    foreign key (EID) REFERENCES Employees(ID);
-
-
-

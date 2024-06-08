@@ -42,3 +42,5 @@ WHERE Name = 'David Miller';
 UPDATE Employees
 SET Name = 'New Name'
 WHERE Name = 'Current Name';
+
+DROP table Employees;
