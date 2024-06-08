@@ -19,8 +19,9 @@ import static javafx.scene.control.ButtonType.YES;
 
 public class SampleOperationController implements Initializable {
 
-    @FXML
-    private TextField txtCode, txtName, txtStorage, txtTemperature;
+    public TextField tfName,tfTemperature,tfStorage;
+    public DatePicker dpReceiveDate;
+    public ComboBox dbSampleType;
     @FXML
     private DatePicker dpProdDate, dpExpDate;
     @FXML

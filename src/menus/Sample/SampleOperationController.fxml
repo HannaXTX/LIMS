@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="411.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.employees.EmployeeOperationController">
+<AnchorPane prefHeight="411.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.Sample.SampleOperationController">
     <children>
         <GridPane layoutX="9.0" layoutY="12.0" prefHeight="388.0" prefWidth="405.0" style="-fx-background-color: grey;">
             <columnConstraints>
@@ -173,7 +173,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <ComboBox fx:id="cbSampleType" maxWidth="180.0" prefWidth="180.0">
+                        <ComboBox fx:id="dbSampleType" maxWidth="180.0" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
