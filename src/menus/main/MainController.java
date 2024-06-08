@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
-    public Button btLogout, btEmployee, btDashboard, btSample,btCustomer,btTest;
+    public Button btLogout, btEmployee, btDashboard, btSample,btCustomer,btTest,btResult;
     public GridPane gpGRID;
     public AnchorPane apMain;
     @FXML
@@ -89,6 +89,11 @@ public class MainController implements Initializable {
             }
             else if (actionEvent.getSource() == btTest) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestController.fxml"));
+                Node test = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                apMain.getChildren().add(test);
+            }
+            else if (actionEvent.getSource() == btResult) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/results/ResultController.fxml"));
                 Node test = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
                 apMain.getChildren().add(test);
             }

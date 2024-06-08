@@ -112,6 +112,19 @@
                         <Insets left="10.0" />
                      </opaqueInsets>
                   </HBox>
+                  <HBox prefHeight="49.0" prefWidth="199.0">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="46.0">
+                           <image>
+                              <Image url="@../../Assets/Icons/Results.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btResult" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeTab" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="Results" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                  </HBox>
                     </children>
                     <opaqueInsets>
                         <Insets left="10.0" top="10.0" />
