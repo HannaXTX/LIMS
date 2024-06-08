@@ -1,44 +1,58 @@
 use LIMS;
-CREATE TABLE Result (
-                         Rid INT PRIMARY KEY AUTO_INCREMENT,
-                         Tid INT NOT NULL,
-                         Status VARCHAR(255),
-                         Description TEXT,
-                         Date DATE,
-                         SCode VARCHAR(255),
-                         Unit VARCHAR(255),
+CREATE TABLE Result
+(
+    Rid         INT PRIMARY KEY AUTO_INCREMENT,
+    Tid         INT NOT NULL,
+    SCode       INT NOT NULL,
+    Status      VARCHAR(255),
+    Description TEXT,
+    Date        DATE,
+    Unit        VARCHAR(255)
 
-                         foreign key (Tid) REFERENCES Test (Tid)
+#     FOREIGN KEY (Tid) REFERENCES Test (Tid),
+#     FOREIGN KEY (SCode) REFERENCES Sample (SCode)
 );
+
 # insert some results
 INSERT INTO Result (Tid, Status, Description, Date, SCode, Unit)
-VALUES (1, 'Approved', 'All tests passed', '2024-06-01', 'SC123', 'UnitA');
+VALUES (1, 'Approved', 'All tests passed', '2024-06-01', 1, 'UnitA'),
+       (2, 'Pending', 'Initial testing phase', '2024-06-02', 2, 'UnitB'),
+       (3, 'Rejected', 'Encountered errors', '2024-06-03', 3, 'UnitC'),
+       (4, 'Approved', 'Successfully completed', '2024-06-04', 4, 'UnitD'),
+       (5, 'Pending', 'Awaiting resources', '2024-06-05', 5, 'UnitE');
 
-INSERT INTO Result (Tid, Status, Description, Date, SCode, Unit)
-VALUES (2, 'Pending', 'Initial testing phase', '2024-06-02', 'SC124', 'UnitB');
+SELECT * FROM Result;
 
-INSERT INTO Result (Tid, Status, Description, Date, SCode, Unit)
-VALUES (3, 'Rejected', 'Encountered errors', '2024-06-03', 'SC125', 'UnitC');
-
-INSERT INTO Result (Tid, Status, Description, Date, SCode, Unit)
-VALUES (4, 'Approved', 'Successfully completed', '2024-06-04', 'SC126', 'UnitD');
-
-INSERT INTO Result (Tid, Status, Description, Date, SCode, Unit)
-VALUES (5, 'Pending', 'Awaiting resources', '2024-06-05', 'SC127', 'UnitE');
+DROP TABLE Result;
 
 
 #Delete
-DELETE FROM Result
+DELETE
+FROM Result
 WHERE Rid = 1;
 
 #Update
 UPDATE Result
-SET Status = 'Pending',
+SET Status      = 'Pending',
     Description = 'Awaiting results',
-    Date = '2024-06-02',
-    SCode = 'SC456',
-    Unit = 'UnitB'
+    Date        = '2024-06-02',
+    SCode       = 'SC456',
+    Unit        = 'UnitB'
 WHERE Rid = 1;
+
+
+
+
+ALTER TABLE test
+    DROP FOREIGN KEY test_ibfk_2;
+
+
+ALTER TABLE Result
+    DROP FOREIGN KEY result_ibfk_2;
+
+ALTER TABLE Result
+    DROP FOREIGN KEY result_ibfk_1;
+
 
 
 
