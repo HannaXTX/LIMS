@@ -8,8 +8,9 @@ CREATE TABLE Sample (
                         Storage VARCHAR(255),
                         Temperature VARCHAR(255),
                         IS_A VARCHAR(255),
-
-                        FOREIGN KEY (Cid) REFERENCES Customer(Cid)
+                        Tid INT,
+                        FOREIGN KEY (Cid) REFERENCES Customer(Cid),
+                        FOREIGN KEY (Tid) REFERENCES Test(Tid)
 );
 
 INSERT INTO Sample (SCode, Name, ProductionDate, ExpirationDate, Storage, Temperature, IS_A) VALUES
@@ -29,3 +30,4 @@ DELETE FROM Sample WHERE SCode = 'S001';
 UPDATE Sample
 SET Name = 'Updated Sample 2', Temperature = '25C'
 WHERE SCode = 'S002';
+

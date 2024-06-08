@@ -54,10 +54,10 @@
             </TableView>
             <HBox prefHeight="141.0" prefWidth="673.0" spacing="20.0" GridPane.rowIndex="4">
                <children>
-                  <Button fx:id="btAddSample" mnemonicParsing="false" onAction="#modifyTable" prefHeight="53.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Add" />
-                  <Button fx:id="btUpdateSample" mnemonicParsing="false" prefHeight="54.0" prefWidth="121.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Update" />
-                  <Button fx:id="BDeleteSample" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
-                  <Button fx:id="BClearSample" mnemonicParsing="false" prefHeight="59.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Clear" />
+                   <Button fx:id="btAddSample" mnemonicParsing="false" onAction="#addSample" prefHeight="53.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Add" />
+                   <Button fx:id="btUpdateSample" mnemonicParsing="false" onAction="#updateSample" prefHeight="54.0" prefWidth="121.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Update" />
+                   <Button fx:id="BDeleteSample" alignment="CENTER" mnemonicParsing="false" onAction="#deleteSample" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
+                   <Button fx:id="BClearSample" mnemonicParsing="false" onAction="#clearSample" prefHeight="59.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Clear" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />

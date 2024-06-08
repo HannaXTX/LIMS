@@ -1,7 +1,7 @@
 package entities;
 
 public class Sample {
-    private String code;
+    private int code;
     private String name;
     private int Cid;
     private String ProductionDate;
@@ -10,7 +10,7 @@ public class Sample {
     private String Temperature;
     private String SampleType;
 
-    public Sample(String code,
+    public Sample(int code,
                   String name,
                   int cid,
                   String productionDate,
@@ -30,11 +30,11 @@ public class Sample {
         SampleType = sampleType;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
