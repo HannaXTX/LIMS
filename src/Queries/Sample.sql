@@ -49,20 +49,28 @@ SHOW CREATE TABLE sample;
 
 
 -- Step 2: Drop the foreign key constraint
-ALTER TABLE test
-    DROP FOREIGN KEY test_ibfk_2;
-
+ALTER TABLE sample
+    DROP FOREIGN KEY test_ibfk_1,
+    DROP FOREIGN KEY customer_ibfk_1;
 
 DROP TABLE sample;
 
+
 ALTER TABLE sample
-    ADD CONSTRAINT customer_ibfk_1 FOREIGN KEY (Cid) REFERENCES Test (Cid);
-
-ALTER TABLE test
-    ADD CONSTRAINT test_ibfk_2 FOREIGN KEY (Tid) REFERENCES Test (Tid);
+    ADD CONSTRAINT customer_ibfk_1 FOREIGN KEY (Cid) REFERENCES Customer (Cid),
+    ADD CONSTRAINT test_ibfk_1 FOREIGN KEY (Tid) REFERENCES Test (Tid);
 
 
+SELECT CONSTRAINT_NAME,
+       COLUMN_NAME,
+       REFERENCED_TABLE_NAME,
+       REFERENCED_COLUMN_NAME
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE TABLE_NAME = 'sample'
 
+
+# ALTER TABLE test
+#     ADD CONSTRAINT test_ibfk_2 FOREIGN KEY (Tid) REFERENCES Test (Tid);
 
 
 #     FOREIGN KEY (Cid) REFERENCES Customer (Cid),

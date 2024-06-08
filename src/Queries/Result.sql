@@ -2,7 +2,6 @@ use LIMS;
 CREATE TABLE Result
 (
     Rid         INT PRIMARY KEY AUTO_INCREMENT,
-    Tid         INT NOT NULL,
     SCode       INT NOT NULL,
     Status      VARCHAR(255),
     Description TEXT,
@@ -14,12 +13,12 @@ CREATE TABLE Result
 );
 
 # insert some results
-INSERT INTO Result (Tid, Status, Description, Date, SCode, Unit)
-VALUES (1, 'Approved', 'All tests passed', '2024-06-01', 1, 'UnitA'),
-       (2, 'Pending', 'Initial testing phase', '2024-06-02', 2, 'UnitB'),
-       (3, 'Rejected', 'Encountered errors', '2024-06-03', 3, 'UnitC'),
-       (4, 'Approved', 'Successfully completed', '2024-06-04', 4, 'UnitD'),
-       (5, 'Pending', 'Awaiting resources', '2024-06-05', 5, 'UnitE');
+INSERT INTO Result ( Status, Description, Date, SCode, Unit)
+VALUES ( 'Approved', 'All tests passed', '2024-06-01', 1, 'UnitA'),
+       ( 'Pending', 'Initial testing phase', '2024-06-02', 2, 'UnitB'),
+       ( 'Rejected', 'Encountered errors', '2024-06-03', 3, 'UnitC'),
+       ( 'Approved', 'Successfully completed', '2024-06-04', 4, 'UnitD'),
+       ( 'Pending', 'Awaiting resources', '2024-06-05', 5, 'UnitE');
 
 SELECT * FROM Result;
 
@@ -42,16 +41,19 @@ WHERE Rid = 1;
 
 
 
+ALTER TABLE result
+    DROP FOREIGN KEY test_ibfk_2,
+    DROP FOREIGN KEY sample_ibfk_3;
 
-ALTER TABLE test
-    DROP FOREIGN KEY test_ibfk_2;
+DROP TABLE Result;
 
 
-ALTER TABLE Result
-    DROP FOREIGN KEY result_ibfk_2;
+ALTER TABLE result
+    ADD CONSTRAINT  test_ibfk_2 FOREIGN KEY (Tid) REFERENCES Test (Tid),
+    ADD CONSTRAINT  sample_ibfk_3   FOREIGN KEY (SCode) REFERENCES Sample (SCode);
 
-ALTER TABLE Result
-    DROP FOREIGN KEY result_ibfk_1;
+
+
 
 
 
