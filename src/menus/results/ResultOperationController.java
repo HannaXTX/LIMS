@@ -1,8 +1,13 @@
-package menus.employees;
+package menus.results;
 
+import database.Connector;
 import database.Queries;
 import database.UtilFunctions;
 import entities.Employee;
+import entities.Result;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,109 +16,133 @@ import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ResultOperationController implements Initializable {
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
     @FXML
-    private TextField tfName, tfSSN, tfAddress, tfPhoneNumber, tfEmail;
+    private TextField tfSCode, tfStatus, tfDescription, tfUnit;
     @FXML
-    private ComboBox<String> cbMajor;
+    private ComboBox<String> cbStatus;
     @FXML
     private DatePicker dpDate;
     @FXML
     private Button btDone, btCancel;
 
-    private Employee emp;
+    private Result res;
 
-    private ObservableList<Employee> employeeList;
-    private TableView<Employee> tableView;
+    private ObservableList<Result> resultsList;
+    private TableView<Result> tableView;
 
-    public void setEmployeeList(ObservableList<Employee> employeeList) {
-        this.employeeList = employeeList;
+    public void setEmployeeList(ObservableList<Result> resultsList) {
+        this.resultsList = resultsList;
     }
 
-    public void setTableView(TableView<Employee> tableView) {
+    public void setTableView(TableView<Result> tableView) {
         this.tableView = tableView;
     }
 
 
     private int getNextId() {
-        return employeeList.stream().mapToInt(Employee::getId).max().orElse(0) + 1;
+        return resultsList.stream().mapToInt(Result::getResId).max().orElse(0) + 1;
     }
+
     @FXML
-    public Employee saveEmployee() {
-        Employee newEmployee = new Employee(
-                getNextId(),
-                tfName.getText(),
-                tfSSN.getText(),
-                tfAddress.getText(),
-                dpDate.getValue().toString(),
-                cbMajor.getValue(),
-                tfPhoneNumber.getText(),
-                tfEmail.getText()
-        );
-        employeeList.add(newEmployee);
-        tableView.refresh();
-        return newEmployee;
+    public Result saveResult() {
+        try {
+            SimpleIntegerProperty intSCodeProperty = new SimpleIntegerProperty();
+            intSCodeProperty.bind(Bindings.createIntegerBinding(() ->
+                    Integer.parseInt(tfSCode.getText()), tfSCode.textProperty()));
+
+            Result newResult = new Result(
+                    getNextId(),
+                    intSCodeProperty.get(),
+                    tfStatus.getText(),
+                    tfUnit.getText(),
+                    tfDescription.getText(),
+                    dpDate.getValue().toString()
+            );
+
+            resultsList.add(newResult);
+            tableView.refresh();
+            return newResult;
+        } catch (NumberFormatException e) {
+            System.err.println("Error: Invalid input for SCode");
+            e.printStackTrace();
+            // Handle the exception as needed
+            return null; // Or some default result
+        }
     }
 
 
-    public void setEmpData(Employee emp) {
-        tfName.setText(emp.getName());
-        tfSSN.setText(emp.getSsn());
-        tfAddress.setText(emp.getAddress());
-        dpDate.setValue(LocalDate.parse(emp.getDateOfBirth()));
-        cbMajor.setValue(emp.getMajor());
-        tfPhoneNumber.setText(emp.getPhoneNumber());
-        tfEmail.setText(emp.getEmail());
+
+    public void setResData(Result res) {
+        tfSCode.setText(String.valueOf(res.getResId()));
+        tfStatus.setText(res.getStatus());
+        dpDate.setValue(LocalDate.parse(res.getDate()));
+        tfDescription.setText(res.getDescription());
+        tfUnit.setText(res.getUnit());
     }
 
 
-    public void updateEmployee() {
-        emp.setName(tfName.getText());
-        emp.setSsn(tfSSN.getText());
-        emp.setAddress(tfAddress.getText());
-        emp.setDateOfBirth(dpDate.getValue().toString());
-        emp.setMajor(cbMajor.getValue());
-        emp.setPhoneNumber(tfPhoneNumber.getText());
-        emp.setEmail(tfEmail.getText());
-        tableView.refresh();
+
+    public void updateResult() {
+        try {
+            // Update Result properties
+            res.setSCode(Integer.parseInt(tfSCode.getText()));
+            res.setStatus(tfStatus.getText());
+            res.setDate(dpDate.getValue().toString()); // Assuming getDate() returns a LocalDate
+            res.setDescription(tfDescription.getText());
+            res.setUnit(tfUnit.getText());
+
+            // Refresh TableView
+            tableView.refresh();
+        } catch (NumberFormatException e) {
+            // Handle parsing error for SCode
+            System.err.println("Error: Invalid input for SCode");
+            e.printStackTrace(); // You might want to log or handle this differently
+        } catch (Exception e) {
+            // Handle validation errors or any other exceptions
+            e.printStackTrace(); // You might want to log or handle this differently
+        }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        cbMajor.getItems().addAll("Biology", "Chemistry", "Finance");
-    }
+
+
 
     public void cancelEvent(ActionEvent actionEvent) {
-        EmpController.getModifyStage().close();
+        ResultController.getModifyStage().close();
     }
 
-    public void setSelectedEmployee(Employee employee) {
-        emp = employee;
-        setEmpData(emp);
+    public void setSelectedEmployee(Result result) {
+        res = result;
+        setResData(res);
     }
 
 
     public void addEvent(ActionEvent actionEvent) throws SQLException {
         try {
-            if (emp == null) {
-                //            String query = Queries.addEmployeetoDB(tfName.getText(), tfSSN.getText(), tfAddress.getText(), dpDate.getValue().toString(), cbMajor.getValue(), tfPhoneNumber.getText(), tfEmail.getText());
-                //            Statement statement = Connector.getCon().createStatement();
-                //            statement.executeUpdate(query);
+            if (res == null) {
+                            String query = Queries.addResultToDB(getNextId(),tfSCode.getText(), tfStatus.getText(), tfUnit.getText(), tfDescription.getText(), dpDate.getValue().toString());
+                            Statement statement = Connector.getCon().createStatement();
+                            statement.executeUpdate(query);
 
-                EmpController.getModifyStage().close();
-                saveEmployee();
+                ResultController.getModifyStage().close();
+                saveResult();
             } else {
-                updateEmployee();
-                System.out.println(emp.getId());
-                Queries.updateEmployeeInDB(emp.getId(), emp.getName(),
-                        emp.getSsn(), emp.getAddress(), emp.getDateOfBirth(),
-                        emp.getMajor(), emp.getPhoneNumber(), emp.getEmail());
+                updateResult();
+                System.out.println(res.getResId());
+                Queries.updateResultInDB(res.getResId(), res.getSCode(),
+                        res.getStatus(), res.getUnit(), res.getDescription(), res.getDate());
 
-                EmpController.getModifyStage().close();
+
+                ResultController.getModifyStage().close();
 
 
             }
@@ -125,4 +154,17 @@ public class ResultOperationController implements Initializable {
         }
     }
 
+    public void setResultList(ObservableList<Result> results) {
+    }
+
+    public void setSelectedResult(Result selectedItem) {
+    }
+
+    public ObservableList<Result> getResultsList() {
+        return resultsList;
+    }
+
+    public void setResultsList(ObservableList<Result> resultsList) {
+        this.resultsList = resultsList;
+    }
 }

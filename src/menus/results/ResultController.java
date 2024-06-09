@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import menus.employees.ResultOperationController;
+import menus.results.ResultOperationController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +33,7 @@ public class ResultController implements Initializable {
 
     ;
     @FXML
-    private TextField tfResultId, tfUnit, tfDescription, tfDate, tfEmail;
+    private TextField tfResultId, tfUnit, tfDescription, tfDate;
     @FXML
     private Button btAdd, btUpdate;
     @FXML
@@ -106,7 +106,7 @@ public class ResultController implements Initializable {
             Scene scene = new Scene(root);
 
             ResultOperationController resultOperationController = loader.getController();
-            resultOperationController.setEmployeeList(FXCollections.observableList(resList));
+            resultOperationController.setResultList(FXCollections.observableList(resList));
             resultOperationController.setTableView(tvResult);
 
             modifyStage = new Stage();
@@ -142,7 +142,7 @@ public class ResultController implements Initializable {
         UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
                 "are you sure you want to Delete this result" + " ?", YES).showAndWait().ifPresent(buttonType -> {
             if (buttonType == YES) {
-                Queries.deleteResult(res, res.getResId());
+                Queries.deleteResult(res.getResId());
                 tvResult.getItems().remove(res);
                 tvResult.refresh();
 
