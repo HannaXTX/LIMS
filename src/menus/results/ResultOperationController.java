@@ -40,9 +40,6 @@ public class ResultOperationController implements Initializable {
     private ObservableList<Result> resultsList;
     private TableView<Result> tableView;
 
-    public void setEmployeeList(ObservableList<Result> resultsList) {
-        this.resultsList = resultsList;
-    }
 
     public void setTableView(TableView<Result> tableView) {
         this.tableView = tableView;
@@ -120,7 +117,7 @@ public class ResultOperationController implements Initializable {
         ResultController.getModifyStage().close();
     }
 
-    public void setSelectedEmployee(Result result) {
+    public void setSelectedEmployeeR(Result result) {
         res = result;
         setResData(res);
     }
@@ -154,10 +151,13 @@ public class ResultOperationController implements Initializable {
         }
     }
 
-    public void setResultList(ObservableList<Result> results) {
+    public void setResultList(ObservableList<Result> resultsList) {
+        this.resultsList = resultsList;
     }
 
-    public void setSelectedResult(Result selectedItem) {
+    public void setSelectedResult(Result result) {
+        res = result;
+        setResData(res);
     }
 
     public ObservableList<Result> getResultsList() {

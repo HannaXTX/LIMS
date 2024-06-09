@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="411.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.employees.EmployeeOperationController">
+<AnchorPane prefHeight="411.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menus.results.ResultOperationController">
     <children>
         <GridPane layoutX="9.0" layoutY="12.0" prefHeight="388.0" prefWidth="405.0" style="-fx-background-color: grey;">
             <columnConstraints>
@@ -28,7 +28,7 @@
             <children>
                 <VBox prefHeight="288.0" prefWidth="136.0">
                     <children>
-                        <Label graphicTextGap="3.0" text="Name">
+                        <Label fx:id="lblSCode" graphicTextGap="3.0" text="SCode">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -42,7 +42,7 @@
                                 <Insets bottom="10.0" />
                             </padding>
                         </Label>
-                        <Label graphicTextGap="3.0" text="SSN">
+                        <Label fx:id="lblStatus" graphicTextGap="3.0" text="Status">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -56,7 +56,7 @@
                                 <Insets bottom="10.0" />
                             </padding>
                         </Label>
-                        <Label graphicTextGap="3.0" text="Address">
+                        <Label fx:id="lblUnit" graphicTextGap="3.0" text="Unit">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -70,7 +70,7 @@
                                 <Insets bottom="10.0" />
                             </padding>
                         </Label>
-                        <Label graphicTextGap="3.0" text="Date of Birth">
+                        <Label fx:id="lblDescription" graphicTextGap="3.0" text="Description">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -84,35 +84,7 @@
                                 <Insets bottom="10.0" />
                             </padding>
                         </Label>
-                        <Label graphicTextGap="3.0" text="Major">
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
-                        </Label>
-                        <Label graphicTextGap="3.0" text="Phone Number">
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
-                        </Label>
-                        <Label alignment="TOP_CENTER" graphicTextGap="3.0" text="Email">
+                        <Label fx:id="lblDate" graphicTextGap="3.0" text="Date">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -143,12 +115,16 @@
                         <Insets />
                     </opaqueInsets>
                     <children>
-                        <TextField fx:id="tfName" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
+                        <TextField fx:id="tfSCode" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="tfSSN" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
+                        <ComboBox fx:id="cbStatus" prefWidth="180.0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin></ComboBox>
+                        <TextField fx:id="tfUnit" maxWidth="180.0" prefWidth="180.0">
                             <padding>
                                 <Insets bottom="10.0" />
                             </padding>
@@ -156,7 +132,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <TextField fx:id="tfAddress" maxWidth="180.0" prefWidth="180.0">
+                        <TextField fx:id="tfDescription" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
                             <padding>
                                 <Insets bottom="10.0" />
                             </padding>
@@ -168,28 +144,11 @@
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin></DatePicker>
-                        <ComboBox fx:id="cbMajor" prefWidth="180.0">
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin></ComboBox>
-                        <TextField fx:id="tfPhoneNumber" maxWidth="180.0" prefWidth="180.0">
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </TextField>
-                        <TextField fx:id="tfEmail" alignment="TOP_LEFT" maxWidth="180.0" prefWidth="180.0">
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
-                        </TextField>
                     </children>
                 </VBox>
-                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <HBox prefHeight="70.0" prefWidth="318.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <children>
-                        <Button fx:id="btDone" mnemonicParsing="false" onAction="#addEvent" text="Done">
+                        <Button fx:id="btDone" mnemonicParsing="false" onAction="#addEvent" prefHeight="41.0" prefWidth="67.0" text="Done">
                             <HBox.margin>
                                 <Insets right="30.0" />
                             </HBox.margin>
