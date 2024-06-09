@@ -10,11 +10,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import menus.employees.ResultOperationController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,12 +25,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import static javafx.scene.control.ButtonType.YES;
 
-public class ResultController {
+public class ResultController implements Initializable {
 
 
-
+    ;
     @FXML
     private TextField tfResultId, tfUnit, tfDescription, tfDate, tfEmail;
     @FXML
@@ -36,9 +39,9 @@ public class ResultController {
     @FXML
     private TableView<Result> tvResult;
     @FXML
-    private TableColumn<Result, Integer> colId;
+    private TableColumn<Result, Integer> colId, colSCode;
     @FXML
-    private TableColumn<Result, String> colUnit, colDescription, colDate;
+    private TableColumn<Result, String> colDescription, colUnit, colDate, colStatus;
 
     private static Stage modifyStage;
 
@@ -51,7 +54,11 @@ public class ResultController {
 
     public void initialize(URL location, ResourceBundle resources) {
 
+//        Result(int resId, int SCode, String Status, String unit, String description, String date
+
         colId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getResId()).asObject());
+        colSCode.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getSCode()).asObject());
+        colStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
         colUnit.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnit()));
         colDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
         colDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate()));
@@ -69,14 +76,13 @@ public class ResultController {
         try (PreparedStatement statement = Connector.getCon().prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
 
-            //    private String resId;
-            //    private String unit;
-            //    private String description;
-            //    private String date;
-
             while (resultSet.next()) {
-                Result result = new Result (
+                //        Result(int resId, int SCode, String Status, String unit, String description, String date
+
+                Result result = new Result(
                         resultSet.getInt("Rid"),
+                        resultSet.getInt(("SCode")),
+                        resultSet.getString("Status"),
                         resultSet.getString("Unit"),
                         resultSet.getString("Description"),
                         resultSet.getString("Date")
@@ -124,7 +130,7 @@ public class ResultController {
                 modifyStage.setScene(scene);
                 modifyStage.show();
             } catch (Exception ex) {
-                UtilFunctions.createAlert("ERROR","no Record Selected","Please select a record to update",null).show();
+                UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to update", null).show();
             }
 
         }
@@ -134,7 +140,7 @@ public class ResultController {
     public void deleteEmployee(javafx.event.ActionEvent actionEvent) throws SQLException {
         Result res = tvResult.getSelectionModel().getSelectedItem();
         UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                "are you sure you want to Delete this result" +  " ?", YES).showAndWait().ifPresent(buttonType -> {
+                "are you sure you want to Delete this result" + " ?", YES).showAndWait().ifPresent(buttonType -> {
             if (buttonType == YES) {
                 Queries.deleteResult(res, res.getResId());
                 tvResult.getItems().remove(res);

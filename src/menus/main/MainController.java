@@ -94,8 +94,8 @@ public class MainController implements Initializable {
             }
             else if (actionEvent.getSource() == btResult) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/results/ResultController.fxml"));
-                Node test = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
-                apMain.getChildren().add(test);
+                Node result = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                apMain.getChildren().add(result);
             }
         }
         catch (Exception ex){

@@ -26,7 +26,6 @@ import java.util.ResourceBundle;
 import static javafx.scene.control.ButtonType.YES;
 
 public class EmpController implements Initializable {
-
     @FXML
     private TextField tfName, tfSSN, tfAddress, tfPhoneNumber, tfEmail;
     @FXML
