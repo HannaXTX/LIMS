@@ -112,4 +112,8 @@ public class Employee {
         Employee.emp = emp;
     }
 
+    public String toString(){
+        return this.getName();
+    }
+
 }

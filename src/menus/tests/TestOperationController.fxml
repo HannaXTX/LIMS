@@ -38,17 +38,6 @@
                                 <Insets bottom="10.0" />
                             </padding>
                         </Label>
-                        <Label graphicTextGap="3.0" text="SCode">
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                            <padding>
-                                <Insets bottom="10.0" />
-                            </padding>
-                        </Label>
                         <Label graphicTextGap="3.0" text="EId">
                             <VBox.margin>
                                 <Insets left="30.0" />
@@ -97,11 +86,6 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <ComboBox fx:id="cbSCode" prefWidth="180.0">
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </ComboBox>
                         <ComboBox fx:id="cbEId" prefWidth="180.0">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
@@ -151,4 +135,3 @@
         </GridPane>
     </children>
 </AnchorPane>
-

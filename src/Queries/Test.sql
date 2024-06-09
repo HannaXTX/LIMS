@@ -3,7 +3,6 @@ CREATE TABLE Test
 (
     Tid   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Name  VARCHAR(255),
-    SCode INT,
     EID   INT NOT NULL,
     price REAL
 
@@ -21,27 +20,12 @@ SELECT *
 FROM Test;
 
 -- Insert first record
-INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 1, 1, 100.50);
+INSERT INTO Test (Name, EID, price)
+VALUES ('Protein', 1, 100),
+       ('Fat', 2, 150),
+       ('Ash', 2, 80),
+       ('Moisture', 1, 50);
 
-INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test A', 2, 1, 100.50);
-
--- Insert second record
-INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test B', 5, 2, 200.00);
-
--- Insert third record
-INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test C', 3, 3, 300.25);
-
--- Insert fourth record
-INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test D', 4, 4, 150.75);
-
--- Insert fifth record
-INSERT INTO Test (Name, SCode, EID, price)
-VALUES ('Test E', 2, 5, 250.00);
 
 #Delete
 DELETE
@@ -57,15 +41,11 @@ SET Name  = 'Test D',
 WHERE Tid = 1;
 
 
-drop table Test;
 
 ALTER TABLE test
-    DROP FOREIGN KEY sample_ibfk_2,
     DROP FOREIGN KEY employee_ibfk_2;
-
 
 DROP TABLE Test;
 
 ALTER TABLE test
-    ADD CONSTRAINT sample_ibfk_2 foreign key (SCode) REFERENCES Sample(SCode),
-    ADD CONSTRAINT  employee_ibfk_2    foreign key (EID) REFERENCES Employees(ID);
+    ADD CONSTRAINT employee_ibfk_2 foreign key (EID) REFERENCES Employees (ID);

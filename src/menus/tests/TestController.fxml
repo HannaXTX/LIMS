@@ -31,11 +31,10 @@
             <children>
                 <TableView fx:id="tvTest" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
-                        <TableColumn fx:id="colTestId" prefWidth="40.0" text="TestId" />
-                        <TableColumn fx:id="colSCode" prefWidth="120.0" text="SCode" />
-                        <TableColumn fx:id="colEId" prefWidth="150.0" text="EId" />
-                        <TableColumn fx:id="colTestName" prefWidth="200.0" text="TestName" />
-                        <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
+                        <TableColumn fx:id="colTestId" prefWidth="79.0" text="TestId" />
+                        <TableColumn fx:id="colEId" prefWidth="85.0" text="EId" />
+                        <TableColumn fx:id="colTestName" prefWidth="475.0" text="TestName" />
+                        <TableColumn fx:id="colPrice" prefWidth="158.0" text="Price" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -53,7 +52,7 @@
                     <children>
                         <Button fx:id="btAdd" mnemonicParsing="false" onAction="#modifyTable" prefHeight="53.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Add" />
                         <Button fx:id="btUpdate" mnemonicParsing="false" onAction="#modifyTable" prefHeight="54.0" prefWidth="121.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Update" />
-                        <Button fx:id="BDeleteTest" alignment="CENTER"  mnemonicParsing="false" onAction="#deleteTest" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
+                        <Button fx:id="BDeleteTest" alignment="CENTER" mnemonicParsing="false" onAction="#deleteTest" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
                         <Button fx:id="BClearTest" mnemonicParsing="false" onAction="#modifyTable" prefHeight="59.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Clear" />
                     </children>
                     <padding>
