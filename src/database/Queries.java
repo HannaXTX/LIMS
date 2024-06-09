@@ -10,9 +10,9 @@ public class Queries {
         String query = "DELETE FROM Results WHERE Id = " + resId;
     }
 
-    public static String addResultToDB(int nextId, String status, String unit, String description, String date, String sCode) {
-        String query = "INSERT INTO Results (Id, Status, Unit, Description, Date, SCode) VALUES (" +
-                nextId + ", '" +
+    public static String addResultToDB(String status, String description,  String date, int sCode, String unit) {
+        String query = "INSERT INTO Result (Status, Unit, Description, Date, SCode) VALUES ('" +
+
                 status + "', '" +
                 unit + "', '" +
                 description + "', '" +
