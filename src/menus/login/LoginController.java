@@ -22,6 +22,14 @@ import java.util.ResourceBundle;
 
 public class LoginController extends MenuManager {
 
+    public LoginController( ) {
+
+    }
+
+    public void setBtLogin(Button btLogin) {
+        this.btLogin = btLogin;
+    }
+
     public String getType() {
         return type;
     }
@@ -73,14 +81,12 @@ public class LoginController extends MenuManager {
             messageLabel.setText("Username/Password cannot be empty");
             return;
         }
-        if(username == "Admin" && password == "0000") {
-            type = "Admin";
+        if(username.equals("Admin") && password.equals("0000")) {
+            setType("Admin");
         } else {
-            type = "User";
+            setType("User");
         }
 
-
-        if(type == "User") {
             try {
                 Connector connecter = new Connector();
                 if (Queries.checkUser(username, password)) {
@@ -98,28 +104,6 @@ public class LoginController extends MenuManager {
                 messageLabel.setText("An error occurred while loading the main menu");
                 e.printStackTrace();
             }
-
-        } else if(type == "Admin") {
-            try {
-                Connector connecter = new Connector();
-                if (Queries.checkUser(username, password)) {
-                    messageLabel.setText("Login successful!");
-                    Parent main = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/menus/main/Main.fxml")));
-                    Scene scene = new Scene(main);
-                    Driver.getMainStage().setScene(scene);
-                } else {
-                    messageLabel.setText("Invalid username or password");
-                }
-            } catch (SQLException e) {
-                messageLabel.setText("An error occurred during login");
-                e.printStackTrace();
-            } catch (Exception e) {
-                messageLabel.setText("An error occurred while loading the main menu");
-                e.printStackTrace();
-            }
-
-
-        }
     }
 
     @FXML

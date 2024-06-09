@@ -50,6 +50,7 @@ public class MainController implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
+        enable( btEmployee,  btCustomer,  btDashboard,  btTest,  btResult);
 
         try {
             Node dashboard = loader.load();
@@ -68,13 +69,14 @@ public class MainController implements Initializable {
     }
 
 
-    public void enable() {
+    public void enable(Button btEmployee, Button btCustomer, Button btDashboard, Button btTest, Button btResult) {
 
-        if(loginController.getType() == "User") {
+        if(loginController.getType().equals("User")) {
             btEmployee.setDisable(true);
             btCustomer.setDisable(true);
             btDashboard.setDisable(true);
-            btLogout.setDisable(true);
+            btTest.setDisable(true);
+            btResult.setDisable(true);
         }
     }
 
