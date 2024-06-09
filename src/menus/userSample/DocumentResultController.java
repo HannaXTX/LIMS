@@ -1,6 +1,5 @@
 package menus.userSample;
 
-import com.mysql.jdbc.Connection;
 import database.Connector;
 import database.Queries;
 import database.UtilFunctions;
@@ -11,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import menus.results.ResultController;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -23,8 +21,8 @@ public class DocumentResultController implements Initializable {
 
     public DatePicker dpReceiveDate;
     public Label lblStatus;
-    public Label tfUnit;
-    public Label tfDescription;
+    public TextField tfUnit;
+    public TextField tfDescription;
     public DatePicker dpDate;
     public Label lblthisSCode;
 
@@ -60,7 +58,7 @@ public class DocumentResultController implements Initializable {
 
     private int getLastIdFromDatabase() throws SQLException {
         try {
-            String query = "SELECT MAX(ResId) AS LastId FROM Result";
+            String query = "SELECT MAX(Rid) AS LastId FROM Result";
 
             Statement statement = Connector.getCon().createStatement();
             ResultSet resultSet = statement.executeQuery(query);{
@@ -76,7 +74,7 @@ public class DocumentResultController implements Initializable {
     }
 
     @FXML
-    public void saveResult() {
+    public Result saveResult() {
         try {
             Result newResult = new Result(
                     getLastIdFromDatabase(),
@@ -86,35 +84,30 @@ public class DocumentResultController implements Initializable {
                     tfDescription.getText(),
                     dpDate.getValue().toString()
             );
-
-
-            if (sampleList != null) { // Check if sampleList is initialized
-                // sampleList.remove(sample);
-                tableView.refresh();
-            }
-
-        } catch (NumberFormatException e) {
+            return newResult;
+        } catch (NumberFormatException | SQLException e) {
             // Handle parsing error
             System.out.println("Error");
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
+        return null;
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cbSampleType.getItems().addAll("Human Food", "Animal feed", "Drinking Water", "Bottled water");
+
+
+        // cbSampleType.getItems().addAll("Human Food", "Animal feed", "Drinking Water", "Bottled water");
     }
 
     public void cancelEvent(ActionEvent actionEvent) {
         MySampleController.getModifyStage().close();
     }
 
-    public void setSelectedSample(Sample sample) {
-        this.sample = sample;
-        setSampleData(sample);
+    public void setSelectedSample(Sample sam) {
+        this.sample = sam;
+        setSampleData(sam);
     }
 
 

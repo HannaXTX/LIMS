@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
-    public Button btLogout, btEmployee, btDashboard, btSample,btCustomer,btTest,btResult;
+    public Button btLogout, btEmployee, btDashboard, btSample, btCustomer, btTest, btResult, btMySample;
     public GridPane gpGRID;
     public AnchorPane apMain;
     @FXML
@@ -40,7 +40,7 @@ public class MainController implements Initializable {
     DashBoardController dashBoardController;
 
     @FXML
-    public  LoginController loginController = new LoginController();
+    public LoginController loginController = new LoginController();
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,7 +50,7 @@ public class MainController implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        enable( btEmployee,  btCustomer,  btDashboard,  btTest,  btResult);
+        enable(btEmployee, btCustomer, btDashboard, btTest, btResult);
 
         try {
             Node dashboard = loader.load();
@@ -58,6 +58,20 @@ public class MainController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         if (LoginController.getType().equals("User")) {
+                apMain.getChildren().clear();
+                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/menus/userSample/MySample.fxml"));
+             Node result = null;             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+             try {
+                 result = loader2.load();
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             }
+             apMain.getChildren().add(result);
+
+        }
+
     }
 
     @FXML
@@ -71,60 +85,61 @@ public class MainController implements Initializable {
 
     public void enable(Button btEmployee, Button btCustomer, Button btDashboard, Button btTest, Button btResult) {
 
-        if(loginController.getType().equals("User")) {
-            btEmployee.setDisable(true);
-            btCustomer.setDisable(true);
-            btDashboard.setDisable(true);
-            btTest.setDisable(true);
-            btResult.setDisable(true);
+        if (loginController.getType().equals("User")) {
+            btEmployee.setVisible(false);
+            btCustomer.setVisible(false);
+            btDashboard.setVisible(false);
+            btTest.setVisible(false);
+            btResult.setVisible(false);
+            btSample.setVisible(false);
         }
     }
 
     public void changeTab(ActionEvent actionEvent) throws IOException {
         apMain.getChildren().clear();
         try {
-            if (actionEvent.getSource() == btEmployee) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/employees/Employees.fxml"));
-                Node employee = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
-                apMain.getChildren().add(employee);
+            if (LoginController.getType().equals("Admin")) {
+                if (actionEvent.getSource() == btEmployee) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/employees/Employees.fxml"));
+                    Node employee = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                    apMain.getChildren().add(employee);
 
-            } else if (actionEvent.getSource() == btDashboard) {
-                apMain.getChildren().clear();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/dashboard/Dashboard.fxml"));
-                Node dashboard = loader.load();
-                apMain.getChildren().add(dashboard);
-                //gpEmployee.setVisible(false);
+                } else if (actionEvent.getSource() == btDashboard) {
+                    apMain.getChildren().clear();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/dashboard/Dashboard.fxml"));
+                    Node dashboard = loader.load();
+                    apMain.getChildren().add(dashboard);
+                    //gpEmployee.setVisible(false);
 
-            } else if (actionEvent.getSource() == btSample) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/Sample/SampleController.fxml"));
-                Node sample = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
-                apMain.getChildren().add(sample);
+                } else if (actionEvent.getSource() == btSample) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/Sample/SampleController.fxml"));
+                    Node sample = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                    apMain.getChildren().add(sample);
+                } else if (actionEvent.getSource() == btCustomer) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/customer/Customers.fxml"));
+                    Node customer = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                    apMain.getChildren().add(customer);
+                } else if (actionEvent.getSource() == btTest) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestController.fxml"));
+                    Node test = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                    apMain.getChildren().add(test);
+                } else if (actionEvent.getSource() == btResult) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/results/ResultController.fxml"));
+                    Node result = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
+                    apMain.getChildren().add(result);
+                }
+
+
             }
-            else if (actionEvent.getSource() == btCustomer) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/customer/Customers.fxml"));
-                Node customer = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
-                apMain.getChildren().add(customer);
-            }
-            else if (actionEvent.getSource() == btTest) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/tests/TestController.fxml"));
-                Node test = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
-                apMain.getChildren().add(test);
-            }
-            else if (actionEvent.getSource() == btResult) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/results/ResultController.fxml"));
-                Node result = loader.load();             // MUST BE DEFINED AS NODE ONLY (CANNOT BE CAST)
-                apMain.getChildren().add(result);
-            }
-        }
-        catch (Exception ex){
-            UtilFunctions.createAlert("ERROR","ERROR","check error", ButtonType.OK).show();
+
+        } catch (Exception ex) {
+            UtilFunctions.createAlert("ERROR", "ERROR", "check error", ButtonType.OK).show();
             ex.printStackTrace();
-
-
         }
 
 
     }
+
     private void updateClock() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
