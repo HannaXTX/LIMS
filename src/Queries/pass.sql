@@ -8,6 +8,9 @@ CREATE TABLE users (
 -- Sign up operation
 INSERT INTO users (username, password) VALUES ('Rakan', '0000');
 
+
+INSERT INTO users (username, password) VALUES ('Admin', '0000');
+
 -- Login operation
 SELECT * FROM users WHERE username = 'Rakan' AND password = '0000';
 

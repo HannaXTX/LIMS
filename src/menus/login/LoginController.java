@@ -30,7 +30,7 @@ public class LoginController extends MenuManager {
         this.btLogin = btLogin;
     }
 
-    public String getType() {
+    public static String getType() {
         return type;
     }
 
@@ -38,8 +38,7 @@ public class LoginController extends MenuManager {
         this.type = type;
     }
 
-    @FXML
-    String type;
+    static String type;
 
     @FXML
     private Button btLogin, btExit, btSignup;

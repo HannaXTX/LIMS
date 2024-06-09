@@ -103,6 +103,7 @@ public class MySampleController implements Initializable {
 
             DocumentResultController documentResultController = loader.getController();
             documentResultController.setSampleList(FXCollections.observableList(sampleList));
+            documentResultController.setSelectedSample(tbSample.getSelectionModel().getSelectedItem());
             documentResultController.setTableView(tbSample);
 
             modifyStage = new Stage();
