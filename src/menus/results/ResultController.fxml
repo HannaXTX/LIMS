@@ -53,7 +53,7 @@
                     <children>
                         <Button fx:id="btAdd" mnemonicParsing="false" onAction="#modifyTable" prefHeight="53.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Add" />
                         <Button fx:id="btUpdate" mnemonicParsing="false" onAction="#modifyTable" prefHeight="54.0" prefWidth="121.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Update" />
-                        <Button fx:id="BDeleteEmp" alignment="CENTER" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
+                        <Button fx:id="BDeleteEmp" alignment="CENTER" mnemonicParsing="false" onAction="#deleteResult" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
                         <Button fx:id="BClearEmp" mnemonicParsing="false" prefHeight="59.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Clear" />
                     </children>
                     <padding>

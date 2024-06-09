@@ -33,6 +33,8 @@ public class Queries {
                 "WHERE Id = " + resId;
     }
 
+
+
     public String addEmployeeToDB(Employee emp) {
         return "INSERT INTO EMPLOYEE VALUES.........";
     }
@@ -295,6 +297,47 @@ public class Queries {
 
 
 
+    // Check user credentials for login
+    public static boolean checkUser(String username, String password) throws SQLException {
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try (PreparedStatement statement = Connector.getCon().prepareStatement(sql)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next(); // If there's a match, return true
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error checking user: " + ex.getMessage());
+            throw ex;
+        }
+    }
 
+    // Add a new user for sign-up
+    public static void addUser(String username, String password) throws SQLException {
+        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        try (PreparedStatement statement = Connector.getCon().prepareStatement(sql)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.executeUpdate();
+            System.out.println("User added successfully");
+        } catch (SQLException ex) {
+            System.out.println("Error adding user: " + ex.getMessage());
+            throw ex;
+        }
+    }
 
+    // Insert user method with boolean return
+    public static boolean insertUser(String username, String password) {
+        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        try (PreparedStatement statement = Connector.getCon().prepareStatement(sql)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.executeUpdate();
+            System.out.println("User added successfully");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error adding user: " + ex.getMessage());
+            return false;
+        }
+    }
 }

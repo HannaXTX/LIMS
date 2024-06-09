@@ -3,7 +3,6 @@ package menus.results;
 import database.Connector;
 import database.Queries;
 import database.UtilFunctions;
-import entities.Employee;
 import entities.Result;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import menus.results.ResultOperationController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -137,7 +135,7 @@ public class ResultController implements Initializable {
     }
 
 
-    public void deleteEmployee(javafx.event.ActionEvent actionEvent) throws SQLException {
+    public void deleteResult(javafx.event.ActionEvent actionEvent) throws SQLException {
         Result res = tvResult.getSelectionModel().getSelectedItem();
         UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
                 "are you sure you want to Delete this result" + " ?", YES).showAndWait().ifPresent(buttonType -> {

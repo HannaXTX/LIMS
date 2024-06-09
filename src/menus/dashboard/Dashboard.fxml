@@ -98,6 +98,27 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
+      <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../../Assets/Labels/LabelBlocks.css" GridPane.rowIndex="3">
+         <children>
+            <Label fx:id="lblTotalSamples1" alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="80.0" prefWidth="281.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/DashBoardButton.css" text="RESULTS">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ImageView fitHeight="79.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" styleClass="labelBlock">
+               <image>
+                  <Image url="@../../Assets/Icons/Sample2.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </children>
+         <styleClass>
+            <String fx:value="imageInBlock" />
+            <String fx:value="labelBlock" />
+         </styleClass>
+      </HBox>
    </children>
    <opaqueInsets>
       <Insets />
