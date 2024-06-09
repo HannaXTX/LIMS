@@ -6,6 +6,7 @@ import database.UtilFunctions;
 import entities.Employee;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,7 +34,7 @@ public class EmpController implements Initializable {
     @FXML
     private DatePicker dpDate;
     @FXML
-    private Button btAdd, btUpdate;
+    private Button btAdd, btUpdate, btStat;
     @FXML
     private TableView<Employee> tvEmployee;
     @FXML
@@ -132,7 +133,7 @@ public class EmpController implements Initializable {
                 modifyStage.setScene(scene);
                 modifyStage.show();
             } catch (Exception ex) {
-                UtilFunctions.createAlert("ERROR","no Record Selected","Please select a record to update",null).show();
+                UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to update", null).show();
             }
 
         }
@@ -157,5 +158,28 @@ public class EmpController implements Initializable {
         });
 
     }
+
+
+    public void showStat(ActionEvent actionEvent) throws IOException {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/employees/EmpStats.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+
+            EmpStatsController empStatsController = loader.getController();
+            empStatsController.setSelectedEmployee(tvEmployee.getSelectionModel().getSelectedItem());
+
+            modifyStage = new Stage();
+            modifyStage.setScene(scene);
+            modifyStage.show();
+        }
+        catch (Exception ex) {
+            UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record", null).show();
+        }
+    }
+
+
+
 }
 

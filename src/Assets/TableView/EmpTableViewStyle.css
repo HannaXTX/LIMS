@@ -1,6 +1,7 @@
 /* TableViewStyle.css */
 .table-view-style {
-    -fx-background-color: #57058f; /* Set the background color for the entire TableView */
+    -fx-background-color: Transparent;
+    -fx-border-color: Transparent;/* Set the background color for the entire TableView */
     -fx-font-family: "Phantomsans", sans-serif;
     -fx-font-size: 12px;
     -fx-padding: 10px 20px; /* Adjust padding as needed */

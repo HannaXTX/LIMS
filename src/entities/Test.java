@@ -6,14 +6,12 @@ public class Test {
     private final SimpleIntegerProperty id;
     private final StringProperty name;
     private final SimpleDoubleProperty price;
-    private final StringProperty scode;
     private final SimpleIntegerProperty eid;
 
-    public Test(int id, String name, String scode, int eid, double price) {
+    public Test(int id, String name, int eid, double price) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
-        this.scode = new SimpleStringProperty(scode);
         this.eid = new SimpleIntegerProperty(eid);
     }
 
@@ -59,19 +57,6 @@ public class Test {
 
     public DoubleProperty priceProperty() {
         return price;
-    }
-
-    // Scode
-    public String getScode() {
-        return scode.get();
-    }
-
-    public void setScode(String scode) {
-        this.scode.set(scode);
-    }
-
-    public StringProperty scodeProperty() {
-        return scode;
     }
 
     // EID

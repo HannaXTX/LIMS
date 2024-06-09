@@ -35,7 +35,7 @@ public class TestController implements Initializable {
     @FXML
     private TableColumn<Test, Double> colPrice;
     @FXML
-    private TableColumn<Test, String> colTestName, colSCode;
+    private TableColumn<Test, String> colTestName;
     @FXML
     private Button btAdd, btUpdate, btDelete;
 
@@ -48,7 +48,6 @@ public class TestController implements Initializable {
         colTestId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         colTestName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-        colSCode.setCellValueFactory(cellData -> cellData.getValue().scodeProperty());
         colEId.setCellValueFactory(cellData -> cellData.getValue().eidProperty().asObject());
 
         try {
@@ -68,7 +67,6 @@ public class TestController implements Initializable {
                 Test test = new Test(
                         resultSet.getInt("Tid"),
                         resultSet.getString("Name"),
-                        resultSet.getString("Scode"),
                         resultSet.getInt("EID"),
                         resultSet.getDouble("price")
                 );

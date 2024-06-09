@@ -17,7 +17,8 @@
     <children>
         <GridPane fx:id="gpEmployee" layoutX="-8.0" prefHeight="534.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="628.0" minWidth="10.0" prefWidth="628.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="628.0" minWidth="10.0" prefWidth="91.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="817.0" minWidth="10.0" prefWidth="811.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="217.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
@@ -29,7 +30,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="tvEmployee" prefHeight="169.0" prefWidth="752.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                <TableView fx:id="tvEmployee" prefHeight="169.0" prefWidth="752.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="40.0" text="ID" />
                         <TableColumn fx:id="colName" prefWidth="200.0" text="NAME" />
@@ -52,12 +53,12 @@
                         <String fx:value="table-view-style" />
                     </styleClass>
                 </TableView>
-                <HBox prefHeight="141.0" prefWidth="673.0" spacing="20.0" GridPane.rowIndex="4">
+                <HBox prefHeight="141.0" prefWidth="673.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <children>
                         <Button fx:id="btAdd" mnemonicParsing="false" onAction="#modifyTable" prefHeight="53.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Add" />
                         <Button fx:id="btUpdate" mnemonicParsing="false" onAction="#modifyTable" prefHeight="54.0" prefWidth="121.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Update" />
                         <Button fx:id="BDeleteEmp" alignment="CENTER" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="52.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Delete" />
-                        <Button fx:id="BClearEmp" mnemonicParsing="false" prefHeight="59.0" prefWidth="106.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Clear" />
+                        <Button fx:id="btStat" mnemonicParsing="false" onAction="#showStat" prefHeight="55.0" prefWidth="163.0" styleClass="button-64" stylesheets="@../../Assets/Buttons/EmployeeButtons.css" text="Statistics" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
