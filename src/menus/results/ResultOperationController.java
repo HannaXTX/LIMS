@@ -24,10 +24,12 @@ public class ResultOperationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        cbStatus.getItems().addAll("Approved" , "Pending" , "Rejected");
     }
 
     @FXML
-    private TextField tfSCode, tfStatus, tfDescription, tfUnit;
+    private TextField tfSCode, tfDescription, tfUnit;
     @FXML
     private ComboBox<String> cbStatus;
     @FXML
@@ -60,7 +62,7 @@ public class ResultOperationController implements Initializable {
             Result newResult = new Result(
                     getNextId(),
                     intSCodeProperty.get(),
-                    tfStatus.getText(),
+                    cbStatus.getValue(),
                     tfUnit.getText(),
                     tfDescription.getText(),
                     dpDate.getValue().toString()
@@ -81,7 +83,7 @@ public class ResultOperationController implements Initializable {
 
     public void setResData(Result res) {
         tfSCode.setText(String.valueOf(res.getResId()));
-        tfStatus.setText(res.getStatus());
+        cbStatus.setValue(res.getStatus());
         dpDate.setValue(LocalDate.parse(res.getDate()));
         tfDescription.setText(res.getDescription());
         tfUnit.setText(res.getUnit());
@@ -93,7 +95,7 @@ public class ResultOperationController implements Initializable {
         try {
             // Update Result properties
             res.setSCode(Integer.parseInt(tfSCode.getText()));
-            res.setStatus(tfStatus.getText());
+            res.setStatus(cbStatus.getValue());
             res.setDate(dpDate.getValue().toString()); // Assuming getDate() returns a LocalDate
             res.setDescription(tfDescription.getText());
             res.setUnit(tfUnit.getText());
@@ -126,7 +128,7 @@ public class ResultOperationController implements Initializable {
     public void addEvent(ActionEvent actionEvent) throws SQLException {
         try {
             if (res == null) {
-                            String query = Queries.addResultToDB(getNextId(),tfSCode.getText(), tfStatus.getText(), tfUnit.getText(), tfDescription.getText(), dpDate.getValue().toString());
+                            String query = Queries.addResultToDB(cbStatus.getValue(), tfDescription.getText(), dpDate.getValue().toString(), Integer.parseInt(tfSCode.getText()) ,tfUnit.getText());
                             Statement statement = Connector.getCon().createStatement();
                             statement.executeUpdate(query);
 

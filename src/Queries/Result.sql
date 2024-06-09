@@ -13,7 +13,7 @@ CREATE TABLE Result
 );
 
 # insert some results
-INSERT INTO Result ( Status, Description, Date, SCode, Unit)
+INSERT INTO Result (Status, Description, Date, SCode, Unit)
 VALUES ( 'Approved', 'All tests passed', '2024-06-01', 1, 'UnitA'),
        ( 'Pending', 'Initial testing phase', '2024-06-02', 2, 'UnitB'),
        ( 'Rejected', 'Encountered errors', '2024-06-03', 3, 'UnitC'),
