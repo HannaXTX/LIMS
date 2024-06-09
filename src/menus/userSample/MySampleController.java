@@ -1,8 +1,6 @@
-package menus.Sample;
+package menus.userSample;
 
 import database.Connector;
-import database.Queries;
-import database.UtilFunctions;
 import entities.Sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,25 +11,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static javafx.scene.control.ButtonType.YES;
-
-public class SampleController implements Initializable {
-
-
+public class MySampleController implements Initializable {
 
 
     @FXML
     private static Stage modifyStage;
-
 
 
     @FXML
@@ -39,11 +33,11 @@ public class SampleController implements Initializable {
     @FXML
     private DatePicker dpProdDate, dpExpDate;
     @FXML
-    private Button btAddSample, btUpdateSample, btDeleteSample;
+    private Button btDocument;
     @FXML
     private TableView<Sample> tbSample;
     @FXML
-    private TableColumn<Sample, String>  colName, colProdDate, colExpDate, colStorage, colTemp, colType;
+    private TableColumn<Sample, String> colName, colProdDate, colExpDate, colStorage, colTemp, colType;
 
     @FXML
     private TableColumn<Sample, Integer> colCode;
@@ -52,7 +46,8 @@ public class SampleController implements Initializable {
     private ArrayList<Sample> sampleList = new ArrayList<>();
 
     @FXML
-    SampleOperationController sampleOperationController = new SampleOperationController();
+    DocumentResultController sampleOperationController = new DocumentResultController();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -72,7 +67,7 @@ public class SampleController implements Initializable {
     }
 
     public void fillTable() throws SQLException {
-        String query = "SELECT * FROM SAMPLE";
+        String query = "SELECT * FROM SAMPLE S,employees E,test T where T.Tid = S.SCode AND T.EID =E.ID";
 
         try (PreparedStatement statement = Connector.getCon().prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
@@ -95,70 +90,69 @@ public class SampleController implements Initializable {
             tbSample.setItems(FXCollections.observableList(sampleList));
             resultSet.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("ERROR IN SQL");
+//            e.printStackTrace();
         }
     }
 
-    public void modifyTable(javafx.event.ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btAddSample) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/Sample/SampleOperationController.fxml"));
+    public void modifyTable(ActionEvent actionEvent) throws IOException {
+        if (actionEvent.getSource() == btDocument) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/userSample/DocumentResult.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            menus.Sample.SampleOperationController  sampleOperationController = loader.getController();
-            sampleOperationController.setSampleList(FXCollections.observableList(sampleList));
-            sampleOperationController.setTableView(tbSample);
+            DocumentResultController documentResultController = loader.getController();
+            documentResultController.setSampleList(FXCollections.observableList(sampleList));
+            documentResultController.setTableView(tbSample);
 
             modifyStage = new Stage();
             modifyStage.setScene(scene);
             modifyStage.show();
         }
 
-        if (actionEvent.getSource() == btUpdateSample) {
-            try{
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/Sample/SampleOperationController.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-
-                menus.Sample.SampleOperationController sampleOperationController = loader.getController();
-                sampleOperationController.setSelectedSample(tbSample.getSelectionModel().getSelectedItem());
-                sampleOperationController.setSampleList(FXCollections.observableList(sampleList));
-                sampleOperationController.setTableView(tbSample);
-
-                modifyStage = new Stage();
-                modifyStage.setScene(scene);
-                modifyStage.show();
-            }
-            catch (Exception ex){
-                UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to update", null).show();
-            }
-        }
+//        if (actionEvent.getSource() == btUpdateSample) {
+//            try{
+//
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/Sample/SampleOperationController.fxml"));
+//                Parent root = loader.load();
+//                Scene scene = new Scene(root);
+//
+//                SampleOperationController sampleOperationController = loader.getController();
+//                sampleOperationController.setSelectedSample(tbSample.getSelectionModel().getSelectedItem());
+//                sampleOperationController.setSampleList(FXCollections.observableList(sampleList));
+//                sampleOperationController.setTableView(tbSample);
+//
+//                modifyStage = new Stage();
+//                modifyStage.setScene(scene);
+//                modifyStage.show();
+//            }
+//            catch (Exception ex){
+//                UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to update", null).show();
+//            }
+//        }
     }
-    @FXML
-    public void deleteSample (ActionEvent actionEvent) throws SQLException {
-        try{
-            entities.Sample sample = tbSample.getSelectionModel().getSelectedItem();
-            UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                    "Are you sure you want to delete Sample " + sample.getName() + "?", YES).showAndWait().ifPresent(buttonType -> {
-                if (buttonType == YES) {
-                    try {
-                        Queries.deleteSample(sample, String.valueOf(sample.getCode()));
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    tbSample.getItems().remove(sample);
-                    tbSample.refresh();
-                }
-            });
-        }
-        catch (Exception ex){
-            UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to delete", null).show();
-        }
-
-    }
-
-
+//    @FXML
+//    public void deleteSample (ActionEvent actionEvent) throws SQLException {
+//        try{
+//            Sample sample = tbSample.getSelectionModel().getSelectedItem();
+//            UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
+//                    "Are you sure you want to delete Sample " + sample.getName() + "?", YES).showAndWait().ifPresent(buttonType -> {
+//                if (buttonType == YES) {
+//                    try {
+//                        Queries.deleteSample(sample, String.valueOf(sample.getCode()));
+//                    } catch (SQLException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    tbSample.getItems().remove(sample);
+//                    tbSample.refresh();
+//                }
+//            });
+//        }
+//        catch (Exception ex){
+//            UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to delete", null).show();
+//        }
+//
+//    }
 
     public static Stage getModifyStage() {
         return modifyStage;

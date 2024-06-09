@@ -111,7 +111,6 @@ public class TestController implements Initializable {
                 modifyStage.show();
             } catch (Exception ex) {
                 UtilFunctions.createAlert("ERROR", "No Record Selected", "Please select a record to update", null).show();
-                ex.printStackTrace();
             }
         }
 
@@ -120,19 +119,23 @@ public class TestController implements Initializable {
 
 
     public void deleteTest(ActionEvent actionEvent) throws SQLException {
-        Test test = tvTest.getSelectionModel().getSelectedItem();
-        UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                "Are you sure you want to Delete Test " + test.getName() + "?", YES).showAndWait().ifPresent(buttonType -> {
-            if (buttonType == YES) {
-                try {
-                    Queries.deleteTest(test, test.getId());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+        try {
+            Test test = tvTest.getSelectionModel().getSelectedItem();
+            UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
+                    "Are you sure you want to Delete Test " + test.getName() + "?", YES).showAndWait().ifPresent(buttonType -> {
+                if (buttonType == YES) {
+                    try {
+                        Queries.deleteTest(test, test.getId());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    tvTest.getItems().remove(test);
+                    tvTest.refresh();
                 }
-                tvTest.getItems().remove(test);
-                tvTest.refresh();
-            }
-        });
+            });
+        } catch (Exception ex) {
+            UtilFunctions.createAlert("ERROR", "No Record Selected", "Please select a record to delete", null).show();
+        }
     }
 
     public static Stage getModifyStage() {

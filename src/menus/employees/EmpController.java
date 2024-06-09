@@ -141,27 +141,33 @@ public class EmpController implements Initializable {
 
 
     public void deleteEmployee(javafx.event.ActionEvent actionEvent) throws SQLException {
-        Employee emp = tvEmployee.getSelectionModel().getSelectedItem();
-        UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                "are you sure you want to Delete Employee " + emp.getName() + " ?", YES).showAndWait().ifPresent(buttonType -> {
-            if (buttonType == YES) {
-                try {
-                    Queries.deleteEmployee(emp, emp.getId());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+        try {
+            Employee emp = tvEmployee.getSelectionModel().getSelectedItem();
+
+
+            UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
+                    "are you sure you want to Delete Employee " + emp.getName() + " ?", YES).showAndWait().ifPresent(buttonType -> {
+                if (buttonType == YES) {
+                    try {
+                        Queries.deleteEmployee(emp, emp.getId());
+                    } catch (Exception e) {
+                        UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to delete", null).show();
+//                    throw new RuntimeException(e);
+                    }
+                    tvEmployee.getItems().remove(emp);
+                    tvEmployee.refresh();
                 }
-                tvEmployee.getItems().remove(emp);
-                tvEmployee.refresh();
 
-            }
 
-        });
+            });
 
+        } catch (Exception ex) {
+            UtilFunctions.createAlert("ERROR", "ERROR", "ERROR", null).show();
+        }
     }
 
-
     public void showStat(ActionEvent actionEvent) throws IOException {
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/employees/EmpStats.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -173,12 +179,10 @@ public class EmpController implements Initializable {
             modifyStage = new Stage();
             modifyStage.setScene(scene);
             modifyStage.show();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record", null).show();
         }
     }
-
 
 
 }
