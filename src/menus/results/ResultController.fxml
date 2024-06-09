@@ -34,7 +34,6 @@
                         <TableColumn fx:id="colId" prefWidth="40.0" text="ID" />
                         <TableColumn fx:id="colSCode" prefWidth="200.0" text="Sample Code" />
                         <TableColumn fx:id="colStatus" prefWidth="120.0" text="Status" />
-                        <TableColumn id="colAddress" fx:id="colUnit" prefWidth="150.0" text="Test Result" />
                         <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
                         <TableColumn fx:id="colDescription" prefWidth="250.0" text="Description" />
                     </columns>

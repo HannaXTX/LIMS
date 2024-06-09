@@ -123,7 +123,7 @@ public class ResultController implements Initializable {
 
                 ResultOperationController resultOperationController = loader.getController();
                 resultOperationController.setSelectedResult(tvResult.getSelectionModel().getSelectedItem());
-                resultOperationController.setEmployeeList(FXCollections.observableList(resList));
+                resultOperationController.setResultsList(FXCollections.observableList(resList));
                 resultOperationController.setTableView(tvResult);
 
                 modifyStage = new Stage();
