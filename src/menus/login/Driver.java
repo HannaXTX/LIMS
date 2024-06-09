@@ -18,6 +18,7 @@ public class Driver extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         mainStage = stage;
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginController.fxml")));
         Scene scene = new Scene(root);

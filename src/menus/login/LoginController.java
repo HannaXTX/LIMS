@@ -22,6 +22,17 @@ import java.util.ResourceBundle;
 
 public class LoginController extends MenuManager {
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @FXML
+    String type;
+
     @FXML
     private Button btLogin, btExit, btSignup;
 
@@ -62,23 +73,52 @@ public class LoginController extends MenuManager {
             messageLabel.setText("Username/Password cannot be empty");
             return;
         }
+        if(username == "Admin" && password == "0000") {
+            type = "Admin";
+        } else {
+            type = "User";
+        }
 
-        try {
-            Connector connecter = new Connector();
-            if (Queries.checkUser(username, password)) {
-                messageLabel.setText("Login successful!");
-                Parent main = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/menus/main/Main.fxml")));
-                Scene scene = new Scene(main);
-                Driver.getMainStage().setScene(scene);
-            } else {
-                messageLabel.setText("Invalid username or password");
+
+        if(type == "User") {
+            try {
+                Connector connecter = new Connector();
+                if (Queries.checkUser(username, password)) {
+                    messageLabel.setText("Login successful!");
+                    Parent main = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/menus/main/Main.fxml")));
+                    Scene scene = new Scene(main);
+                    Driver.getMainStage().setScene(scene);
+                } else {
+                    messageLabel.setText("Invalid username or password");
+                }
+            } catch (SQLException e) {
+                messageLabel.setText("An error occurred during login");
+                e.printStackTrace();
+            } catch (Exception e) {
+                messageLabel.setText("An error occurred while loading the main menu");
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            messageLabel.setText("An error occurred during login");
-            e.printStackTrace();
-        } catch (Exception e) {
-            messageLabel.setText("An error occurred while loading the main menu");
-            e.printStackTrace();
+
+        } else if(type == "Admin") {
+            try {
+                Connector connecter = new Connector();
+                if (Queries.checkUser(username, password)) {
+                    messageLabel.setText("Login successful!");
+                    Parent main = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/menus/main/Main.fxml")));
+                    Scene scene = new Scene(main);
+                    Driver.getMainStage().setScene(scene);
+                } else {
+                    messageLabel.setText("Invalid username or password");
+                }
+            } catch (SQLException e) {
+                messageLabel.setText("An error occurred during login");
+                e.printStackTrace();
+            } catch (Exception e) {
+                messageLabel.setText("An error occurred while loading the main menu");
+                e.printStackTrace();
+            }
+
+
         }
     }
 
@@ -86,6 +126,7 @@ public class LoginController extends MenuManager {
     public void signupButtonAction(ActionEvent actionEvent) {
         String username = usernameField.getText();
         String password = passwordField.getText();
+
 
         if (username.isEmpty() || password.isEmpty()) {
             messageLabel.setText("Username/Password cannot be empty");
@@ -112,4 +153,6 @@ public class LoginController extends MenuManager {
     public void btExitAction(ActionEvent actionEvent) {
         System.exit(0);
     }
+
+
 }

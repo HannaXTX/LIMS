@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import menus.dashboard.DashBoardController;
 import menus.login.Driver;
+import menus.login.LoginController;
 
 
 import java.io.IOException;
@@ -37,6 +38,10 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane apDashboard;
     DashBoardController dashBoardController;
+
+    @FXML
+    public  LoginController loginController = new LoginController();
+
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menus/dashboard/Dashboard.fxml"));
@@ -60,6 +65,17 @@ public class MainController implements Initializable {
         Connector.getCon().close();
         System.out.println("Successfully Logged out");
         System.out.println("Connection Closed");
+    }
+
+
+    public void enable() {
+
+        if(loginController.getType() == "User") {
+            btEmployee.setDisable(true);
+            btCustomer.setDisable(true);
+            btDashboard.setDisable(true);
+            btLogout.setDisable(true);
+        }
     }
 
     public void changeTab(ActionEvent actionEvent) throws IOException {
