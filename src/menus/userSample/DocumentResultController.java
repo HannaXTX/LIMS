@@ -121,7 +121,7 @@ public class DocumentResultController implements Initializable {
     public void addEvent(ActionEvent actionEvent) throws SQLException {
         try {
 
-            String query = Queries.addResultToDB(getLastIdFromDatabase(), lblthisSCode.getText(), lblStatus.getText(), tfUnit.getText(), tfDescription.getText(), dpDate.getValue().toString());
+            String query = Queries.addResultToDB( lblStatus.getText(), tfDescription.getText(), dpDate.getValue().toString(), Integer.parseInt(lblthisSCode.getText()),tfUnit.getText());
             Statement statement = Connector.getCon().createStatement();
             statement.executeUpdate(query);
 
