@@ -6,8 +6,31 @@ import java.sql.*;
 
 public class Queries {
 
-    public static void deleteResult(Result res, int resId) {
+    public static void deleteResult(int resId) {
+        String query = "DELETE FROM Results WHERE Id = " + resId;
+    }
 
+    public static String addResultToDB(int nextId, String status, String unit, String description, String date, String sCode) {
+        String query = "INSERT INTO Results (Id, Status, Unit, Description, Date, SCode) VALUES (" +
+                nextId + ", '" +
+                status + "', '" +
+                unit + "', '" +
+                description + "', '" +
+                date + "', '" +
+                sCode + "')";
+
+        return query;
+    }
+
+
+    public static void updateResultInDB(int resId, int sCode, String status, String unit, String description, String date) {
+        String query = "UPDATE Results SET " +
+                "SCode = " + sCode + ", " +
+                "Status = '" + status + "', " +
+                "Unit = '" + unit + "', " +
+                "Description = '" + description + "', " +
+                "Date = '" + date + "' " +
+                "WHERE Id = " + resId;
     }
 
     public String addEmployeeToDB(Employee emp) {
