@@ -133,22 +133,25 @@ public class CustomerController implements Initializable {
 
 
     public void deleteEmployee(javafx.event.ActionEvent actionEvent) throws SQLException {
-        Customer cus = tvCustomer.getSelectionModel().getSelectedItem();
-        UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                "are you sure you want to Delete Employee " + cus.getName() + " ?", YES).showAndWait().ifPresent(buttonType -> {
-            if (buttonType == YES) {
-                try {
-                    Queries.deleteCustomer(cus, cus.getId());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+        try {
+            Customer cus = tvCustomer.getSelectionModel().getSelectedItem();
+            UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
+                    "are you sure you want to Delete Employee " + cus.getName() + " ?", YES).showAndWait().ifPresent(buttonType -> {
+                if (buttonType == YES) {
+                    try {
+                        Queries.deleteCustomer(cus, cus.getId());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    tvCustomer.getItems().remove(cus);
+                    tvCustomer.refresh();
+
                 }
-                tvCustomer.getItems().remove(cus);
-                tvCustomer.refresh();
 
-            }
+            });
 
-        });
-
+        } catch (Exception ex) {
+            UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to delete", null).show();
+        }
     }
 }
-

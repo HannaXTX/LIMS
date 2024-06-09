@@ -136,17 +136,22 @@ public class ResultController implements Initializable {
 
 
     public void deleteResult(javafx.event.ActionEvent actionEvent) throws SQLException {
-        Result res = tvResult.getSelectionModel().getSelectedItem();
-        UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
-                "are you sure you want to Delete this result" + " ?", YES).showAndWait().ifPresent(buttonType -> {
-            if (buttonType == YES) {
-                Queries.deleteResult(res.getResId());
-                tvResult.getItems().remove(res);
-                tvResult.refresh();
+        try {
+            Result res = tvResult.getSelectionModel().getSelectedItem();
+            UtilFunctions.createAlert("CONFIRMATION", "Confirmation",
+                    "are you sure you want to Delete this result" + " ?", YES).showAndWait().ifPresent(buttonType -> {
+                if (buttonType == YES) {
+                    Queries.deleteResult(res.getResId());
+                    tvResult.getItems().remove(res);
+                    tvResult.refresh();
 
-            }
+                }
 
-        });
+            });
+        } catch (Exception ex) {
+            UtilFunctions.createAlert("ERROR", "no Record Selected", "Please select a record to delete", null).show();
+        }
+
 
     }
 
