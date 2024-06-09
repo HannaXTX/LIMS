@@ -1,5 +1,6 @@
 package menus.employees;
 
+import database.Connector;
 import database.Queries;
 import database.UtilFunctions;
 import entities.Employee;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -100,9 +102,9 @@ public class EmployeeOperationController implements Initializable {
     public void addEvent(ActionEvent actionEvent) throws SQLException {
         try {
             if (emp == null) {
-                //            String query = Queries.addEmployeetoDB(tfName.getText(), tfSSN.getText(), tfAddress.getText(), dpDate.getValue().toString(), cbMajor.getValue(), tfPhoneNumber.getText(), tfEmail.getText());
-                //            Statement statement = Connector.getCon().createStatement();
-                //            statement.executeUpdate(query);
+                String query = Queries.addEmployeetoDB(tfName.getText(), tfSSN.getText(), tfAddress.getText(), dpDate.getValue().toString(), cbMajor.getValue(), tfPhoneNumber.getText(), tfEmail.getText());
+                Statement statement = Connector.getCon().createStatement();
+                statement.executeUpdate(query);
 
                 EmpController.getModifyStage().close();
                 saveEmployee();
